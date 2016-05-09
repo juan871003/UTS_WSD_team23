@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<polls>
+    <poll id="82fccf9a-244f-4a2a-baa1-e5146a34f14f">
+        <title>poll 1</title>
+        <creationDate>2016-05-15T00:00:00+10:00</creationDate>
+        <creator username="Michael" password="asdf"/>
+        <meetingLocation>location 1</meetingLocation>
+        <description>description 1</description>
+        <status>open</status>
+        <possibleMeetingDates>
+            <meetingDate>2016-06-15T00:00:00+10:00</meetingDate>
+            <meetingDate>2016-06-16T00:00:00+10:00</meetingDate>
+            <meetingDate>2016-06-17T00:00:00+10:00</meetingDate>
+        </possibleMeetingDates>
+        <responses>
+            <response personName="Sang" response="2016-06-15T00:00:00+10:00"/>
+            <response personName="Sang" response="2016-06-16T00:00:00+10:00"/>
+            <response personName="Juan" response="2016-06-16T00:00:00+10:00"/>
+        </responses>
+    </poll>
+    <poll id="f4f77932-7d36-4503-bab8-4f273eb61a37">
+        <title>poll 2</title>
+        <creationDate>2016-06-01T00:00:00+10:00</creationDate>
+        <creator username="Pieter" password="asdf"/>
+        <meetingLocation>location 2</meetingLocation>
+        <description>description 2</description>
+        <status>open</status>
+        <possibleMeetingDates>
+            <meetingDate>2016-07-13T00:00:00+10:00</meetingDate>
+            <meetingDate>2016-07-14T00:00:00+10:00</meetingDate>
+            <meetingDate>2016-07-15T00:00:00+10:00</meetingDate>
+        </possibleMeetingDates>
+        <responses>
+            <response personName="Jhon" response="2016-07-13T00:00:00+10:00"/>
+            <response personName="Sofi" response="2016-07-13T00:00:00+10:00"/>
+            <response personName="Eddy" response="2016-07-15T00:00:00+10:00"/>
+        </responses>
+    </poll>
+    <poll id="d482e437-2640-48a3-8a97-e00504db1582">
+        <title>poll 3</title>
+        <creationDate>2016-05-28T00:00:00+10:00</creationDate>
+        <creator username="Pieter" password="asdf"/>
+        <meetingLocation>location 3</meetingLocation>
+        <description>description 3</description>
+        <status>open</status>
+        <possibleMeetingDates>
+            <meetingDate>2016-06-01T00:00:00+10:00</meetingDate>
+            <meetingDate>2016-06-12T00:00:00+10:00</meetingDate>
+            <meetingDate>2016-06-04T00:00:00+10:00</meetingDate>
+        </possibleMeetingDates>
+        <responses>
+            <response personName="Pedro" response="2016-06-01T00:00:00+10:00"/>
+            <response personName="Alister" response="2016-06-01T00:00:00+10:00"/>
+            <response personName="Mary" response="2016-06-01T00:00:00+10:00"/>
+        </responses>
+    </poll>
+</polls>
