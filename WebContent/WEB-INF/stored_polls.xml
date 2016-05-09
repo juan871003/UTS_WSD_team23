@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <polls>
-    <poll id="82fccf9a-244f-4a2a-baa1-e5146a34f14f">
+    <poll id="3e58c282-b9ce-4f53-b568-1d87ad461e4c">
         <title>poll 1</title>
         <creationDate>2016-05-15T00:00:00+10:00</creationDate>
         <creator username="Michael" password="asdf"/>
@@ -18,7 +18,7 @@
             <response personName="Juan" response="2016-06-16T00:00:00+10:00"/>
         </responses>
     </poll>
-    <poll id="f4f77932-7d36-4503-bab8-4f273eb61a37">
+    <poll id="0222518c-0d53-41a3-a33c-bd48b7bfd4a7">
         <title>poll 2</title>
         <creationDate>2016-06-01T00:00:00+10:00</creationDate>
         <creator username="Pieter" password="asdf"/>
@@ -36,7 +36,7 @@
             <response personName="Eddy" response="2016-07-15T00:00:00+10:00"/>
         </responses>
     </poll>
-    <poll id="d482e437-2640-48a3-8a97-e00504db1582">
+    <poll id="471e8628-4a90-444a-a581-0875a10ff51e">
         <title>poll 3</title>
         <creationDate>2016-05-28T00:00:00+10:00</creationDate>
         <creator username="Pieter" password="asdf"/>
