@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<polls>
-    <poll id="3e58c282-b9ce-4f53-b568-1d87ad461e4c">
-        <title>poll 1</title>
-        <creationDate>2016-05-15T00:00:00+10:00</creationDate>
-        <creator username="Michael" password="asdf"/>
-        <meetingLocation>location 1</meetingLocation>
-        <description>description 1</description>
-        <status>open</status>
-        <possibleMeetingDates>
-            <meetingDate>2016-06-15T00:00:00+10:00</meetingDate>
-            <meetingDate>2016-06-16T00:00:00+10:00</meetingDate>
-            <meetingDate>2016-06-17T00:00:00+10:00</meetingDate>
-        </possibleMeetingDates>
-        <responses>
-            <response personName="Sang" response="2016-06-15T00:00:00+10:00"/>
-            <response personName="Sang" response="2016-06-16T00:00:00+10:00"/>
-            <response personName="Juan" response="2016-06-16T00:00:00+10:00"/>
-        </responses>
-    </poll>
-    <poll id="0222518c-0d53-41a3-a33c-bd48b7bfd4a7">
-        <title>poll 2</title>
-        <creationDate>2016-06-01T00:00:00+10:00</creationDate>
-        <creator username="Pieter" password="asdf"/>
-        <meetingLocation>location 2</meetingLocation>
-        <description>description 2</description>
-        <status>open</status>
-        <possibleMeetingDates>
-            <meetingDate>2016-07-13T00:00:00+10:00</meetingDate>
-            <meetingDate>2016-07-14T00:00:00+10:00</meetingDate>
-            <meetingDate>2016-07-15T00:00:00+10:00</meetingDate>
-        </possibleMeetingDates>
-        <responses>
-            <response personName="Jhon" response="2016-07-13T00:00:00+10:00"/>
-            <response personName="Sofi" response="2016-07-13T00:00:00+10:00"/>
-            <response personName="Eddy" response="2016-07-15T00:00:00+10:00"/>
-        </responses>
-    </poll>
-    <poll id="471e8628-4a90-444a-a581-0875a10ff51e">
-        <title>poll 3</title>
-        <creationDate>2016-05-28T00:00:00+10:00</creationDate>
-        <creator username="Pieter" password="asdf"/>
-        <meetingLocation>location 3</meetingLocation>
-        <description>description 3</description>
-        <status>open</status>
-        <possibleMeetingDates>
-            <meetingDate>2016-06-01T00:00:00+10:00</meetingDate>
-            <meetingDate>2016-06-12T00:00:00+10:00</meetingDate>
-            <meetingDate>2016-06-04T00:00:00+10:00</meetingDate>
-        </possibleMeetingDates>
-        <responses>
-            <response personName="Pedro" response="2016-06-01T00:00:00+10:00"/>
-            <response personName="Alister" response="2016-06-01T00:00:00+10:00"/>
-            <response personName="Mary" response="2016-06-01T00:00:00+10:00"/>
-        </responses>
-    </poll>
-</polls>
+<creators>
+    <creator username="Michael" password="asdf">
+        <createdpolls>
+            <poll id="520538c1-1b40-4919-8d15-0d5a9a66b7e4">
+                <title>poll 1</title>
+                <creationDate>2016-05-15T00:00:00+10:00</creationDate>
+                <meetingLocation>location 1</meetingLocation>
+                <description>description 1</description>
+                <status>open</status>
+                <possibleMeetingDates>
+                    <meetingDate>2016-06-15T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-16T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-17T00:00:00+10:00</meetingDate>
+                </possibleMeetingDates>
+                <responses>
+                    <response personName="Sang" response="2016-06-15T00:00:00+10:00"/>
+                    <response personName="Sang" response="2016-06-16T00:00:00+10:00"/>
+                    <response personName="Juan" response="2016-06-16T00:00:00+10:00"/>
+                </responses>
+            </poll>
+        </createdpolls>
+    </creator>
+    <creator username="Pieter" password="asdf">
+        <createdpolls>
+            <poll id="0924ad73-ee4f-45e9-b8be-bf5e19e75397">
+                <title>poll 2</title>
+                <creationDate>2016-06-01T00:00:00+10:00</creationDate>
+                <meetingLocation>location 2</meetingLocation>
+                <description>description 2</description>
+                <status>open</status>
+                <possibleMeetingDates>
+                    <meetingDate>2016-07-13T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-07-14T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-07-15T00:00:00+10:00</meetingDate>
+                </possibleMeetingDates>
+                <responses>
+                    <response personName="Jhon" response="2016-07-13T00:00:00+10:00"/>
+                    <response personName="Sofi" response="2016-07-13T00:00:00+10:00"/>
+                    <response personName="Eddy" response="2016-07-15T00:00:00+10:00"/>
+                </responses>
+            </poll>
+            <poll id="c109f38c-cbe5-482f-9dbf-4326fcf99d58">
+                <title>poll 3</title>
+                <creationDate>2016-05-28T00:00:00+10:00</creationDate>
+                <meetingLocation>location 3</meetingLocation>
+                <description>description 3</description>
+                <status>open</status>
+                <possibleMeetingDates>
+                    <meetingDate>2016-06-01T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-12T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-04T00:00:00+10:00</meetingDate>
+                </possibleMeetingDates>
+                <responses>
+                    <response personName="Pedro" response="2016-06-01T00:00:00+10:00"/>
+                    <response personName="Alister" response="2016-06-01T00:00:00+10:00"/>
+                    <response personName="Mary" response="2016-06-01T00:00:00+10:00"/>
+                </responses>
+            </poll>
+        </createdpolls>
+    </creator>
+</creators>
