@@ -6,14 +6,20 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="creator")
 public class Creator implements Serializable {
 	@XmlAttribute(name="username")
 	String username;
 	@XmlAttribute(name="password")
 	String password;
-	
+	@XmlElementWrapper(name="createdpolls")
+	@XmlElement(name="poll")
+	private ArrayList<Poll> polls = new ArrayList<Poll>();
 	public Creator() {}
 	
 	public Creator(String username, String password) {
@@ -36,6 +42,18 @@ public class Creator implements Serializable {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public ArrayList<Poll> getPolls() {
+		return polls;
+	}
+
+	public void setPolls(ArrayList<Poll> polls) {
+		this.polls = polls;
+	}
+	
+	public void addPoll(Poll poll){
+		polls.add(poll);
 	}
 	
 }

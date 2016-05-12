@@ -15,14 +15,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "poll")
 public class Poll implements Serializable {
+
 	@XmlAttribute(name = "id")
 	private UUID pollID;
 	@XmlElement(name = "title")
 	private String title;
 	@XmlElement(name = "creationDate")
 	private Date creationDate;
-	@XmlElement(name = "creator")
-	private Creator creator;
 	@XmlElement(name = "meetingLocation")
 	private String meetingLocation;
 	@XmlElement(name = "description")
@@ -38,18 +37,21 @@ public class Poll implements Serializable {
 	
 	public Poll() { }
 
-	public Poll(UUID pollID, String title, Date creationDate, Creator creator, String meetingLocation,
+	public Poll(UUID pollID, String title, Date creationDate, String meetingLocation,
 			String description, String status, ArrayList<Date> possibleMeetingDates,
 			ArrayList<PollResponse> pollResponses) {
 		this.pollID = pollID;
 		this.title = title;
 		this.creationDate = creationDate;
-		this.creator = creator;
 		this.meetingLocation = meetingLocation;
 		this.description = description;
 		this.status = status;
 		this.possibleMeetingDates = possibleMeetingDates;
 		this.pollResponses = pollResponses;
+	}
+	
+	public UUID getPollID() {
+		return pollID;
 	}
 
 	public String getTitle() {
@@ -106,13 +108,5 @@ public class Poll implements Serializable {
 
 	public void setPollResponses(ArrayList<PollResponse> pollResponses) {
 		this.pollResponses = pollResponses;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public void setCreator(Creator creator) {
-		this.creator = creator;
 	}
 }

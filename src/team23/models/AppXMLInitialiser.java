@@ -46,50 +46,49 @@ public class AppXMLInitialiser {
 		Poll poll2 = new Poll(
 				UUID.randomUUID(), 
 				"poll 2", 
-				new GregorianCalendar(2016,5,1).getTime(), 
-				creator2, 
+				new GregorianCalendar(2016,5,1).getTime(),
 				"location 2", 
 				"description 2", 
 				"open", 
 				possibleMeetingDates2, 
 				responses2);
+		creator2.addPoll(poll2);
 		
 		Poll poll1 = new Poll(
 				UUID.randomUUID(), 
 				"poll 1", 
-				new GregorianCalendar(2016,4,15).getTime(), 
-				creator1, 
+				new GregorianCalendar(2016,4,15).getTime(),
 				"location 1", 
 				"description 1", 
 				"open", 
 				possibleMeetingDates1, 
 				responses1);
+		creator1.addPoll(poll1);
 		
 		Poll poll3 = new Poll(
 				UUID.randomUUID(), 
 				"poll 3", 
-				new GregorianCalendar(2016,4,28).getTime(), 
-				creator2, 
+				new GregorianCalendar(2016,4,28).getTime(),
 				"location 3", 
 				"description 3", 
 				"open", 
 				possibleMeetingDates3, 
 				responses3);
+		creator2.addPoll(poll3);
 		
-		StoredPolls polls = new StoredPolls();
+		StoredCreators creators = new StoredCreators();
 		
-		polls.addPoll(poll1);
-		polls.addPoll(poll2);
-		polls.addPoll(poll3);
+		creators.addCreator(creator1);
+		creators.addCreator(creator2);
 		
 		// Boilerplate code to convert objects to XML...
-		JAXBContext jc = JAXBContext.newInstance(StoredPolls.class);
+		JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
 		Marshaller m = jc.createMarshaller();
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		m.marshal(polls, System.out);
+		m.marshal(creators, System.out);
 		
 		FileOutputStream fout = new FileOutputStream(storedPollsfilePath);
-		m.marshal(polls, fout);
+		m.marshal(creators, fout);
 	}
 
 }

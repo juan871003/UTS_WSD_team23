@@ -10,6 +10,7 @@
 				<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 				<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+				<link rel="stylesheet" href="pollsApp.css" />
 				<title>
 					<xsl:attribute name="title"></xsl:attribute>
 				</title>
@@ -95,14 +96,14 @@
 	</xsl:template>
 
 	<xsl:template match="card">
-		<div class="card {@type}">
-			<h3>
-				<xsl:value-of select="@class"></xsl:value-of>
-			</h3>
+		<div class="card {@class}">
+			<div class="card-title">
+				<h3><xsl:value-of select="@title"></xsl:value-of></h3>
+			</div>
 			<div class="card-content">
 				<xsl:choose>
 					<xsl:when test="@type='list'">
-						<ul>
+						<ul class="card-list-ul">
 							<xsl:apply-templates></xsl:apply-templates>
 						</ul>
 					</xsl:when>
@@ -116,7 +117,7 @@
 
 	<xsl:template match="carditem">
 		<a href="{@link}">
-			<li>
+			<li class="card-list-li">
 				<xsl:apply-templates></xsl:apply-templates>
 			</li>
 		</a>

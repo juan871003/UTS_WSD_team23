@@ -14,7 +14,7 @@ public class PollApplication {
 
 	//public static final String storedPollsfilePath = "WebContent/WEB-INF/stored_polls.xml";
 	private String filePath;
-	private StoredPolls polls;
+	private StoredCreators creators;
 
 	public PollApplication() {
 		// TODO Auto-generated constructor stub
@@ -28,11 +28,11 @@ public class PollApplication {
 		// Create the unmarshaller
 		JAXBContext jc;
 		try {
-			jc = JAXBContext.newInstance(StoredPolls.class);
+			jc = JAXBContext.newInstance(StoredCreators.class);
 			Unmarshaller u = jc.createUnmarshaller();
 			// Now unmarshal the object from the file
 			FileInputStream fin = new FileInputStream(filePath);
-			polls = (StoredPolls) u.unmarshal(fin); // This loads the "polls" object
+			creators = (StoredCreators) u.unmarshal(fin); // This loads the "polls" object
 			fin.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -40,18 +40,18 @@ public class PollApplication {
 		}
 	}
 	
-	public StoredPolls getPolls() {
-		return polls;
+	public StoredCreators getCreators() {
+		return creators;
 	}
 	
-	public void setPolls(StoredPolls polls) {
-		this.polls = polls;
+	public void setCreators(StoredCreators creators) {
+		this.creators = creators;
 		try {
 			FileOutputStream fout = new FileOutputStream(filePath);
-			JAXBContext jc = JAXBContext.newInstance(StoredPolls.class);
+			JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
 			Marshaller m = jc.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			m.marshal(polls, fout);
+			m.marshal(creators, fout);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class PollApplication {
 	}
 	
 	public void save() {
-		setPolls(polls);
+		setCreators(creators);
 	}
 
 }
