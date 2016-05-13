@@ -14,9 +14,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="creator")
 public class Creator implements Serializable {
 	@XmlAttribute(name="username")
-	String username;
+	private String username;
 	@XmlAttribute(name="password")
-	String password;
+	private String password;
 	@XmlElementWrapper(name="createdpolls")
 	@XmlElement(name="poll")
 	private ArrayList<Poll> polls = new ArrayList<Poll>();
