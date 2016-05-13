@@ -37,5 +37,14 @@ public class StoredCreators implements Serializable {
 	public void removeCreator(Creator creator){
 		list.remove(creator);
 	}
+	
+	public Creator getCreator(String username, String password) {
+		for (Creator creator : list) {
+			if (creator.getUsername().equals(username) && creator.getPassword().equals(password)) {
+				return creator;
+			}
+		}
+		return null;
+	}
 
 }

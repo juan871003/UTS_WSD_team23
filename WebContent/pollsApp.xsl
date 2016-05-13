@@ -126,6 +126,39 @@
 	<xsl:template match="cardtoken">
 		<span><xsl:value-of select="@label"></xsl:value-of><b><xsl:value-of select="text()"></xsl:value-of></b></span>
 	</xsl:template>
+	
+	<xsl:template match="getoutsection">
+		<div class="getout-content">
+			<p class="bg-info"><xsl:value-of select="@message"></xsl:value-of></p>
+		</div>
+	</xsl:template>
+	
+	<xsl:template match="loginfailed">
+	</xsl:template>
+	
+	<xsl:template match="loginsection">
+		<div class="row">
+			<div class="card login-card container">
+				<div class="page-header text-center sign-title">
+	                <h1>Sign In</h1>
+	                <xsl:if test="@loginfailedmsg">
+	                	<p class="danger"><xsl:value-of select="@loginfailedmsg"></xsl:value-of></p>
+	                </xsl:if>
+	            </div>
+				<form action="{@formaction}" method="POST">
+				  <div class="form-group signin-input-container">
+				    <input type="text" class="form-control" name="{@usernameinput}" id="{@usernameinput}" placeholder="Username" required="true" maxlength="20"/>
+				  </div>
+				  <div class="form-group signin-input-container">
+				    <input type="password" class="form-control" name="{@passwordinput}" id="{@passwordinput}" placeholder="Password" required="true" maxlength="20"/>
+				  </div>
+				  <div class="form-group signin-input-container">
+				  	<button type="submit" class="btn btn-success btn-block">Login</button>
+				  </div>
+				</form>
+			</div>
+		</div>
+	</xsl:template>
 </xsl:stylesheet>
 
 

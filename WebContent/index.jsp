@@ -11,11 +11,16 @@
 <% 
 	StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
+	Creator me = (Creator)session.getAttribute("signed_creator");
 %>
-<masterpage title="Login"> 
+<masterpage title="Home"> 
 	<menu> 
 		<menuitemleft title="Home" link="index.jsp" active="true"></menuitemleft>
-		<menuitemright title="Login" link="login.jsp"></menuitemright> 
+		<% if (me==null) { %>
+		<menuitemright title="Login" link="login.jsp"></menuitemright>
+		<% } else { %>
+		<menuitemright title="LogOut" link="logout.jsp"></menuitemright>
+		<% } %> 
 	</menu> 
 	<content>
 		<buttonssection>
@@ -23,13 +28,17 @@
 			<buttonlink link="signup.jsp" type="success">Sign Up</buttonlink>
 		</buttonssection>
 		<cardssection>
+		<% if (me != null && me.getPolls().size() > 0 ) { %>
 			<card type="list" class="small-list-card" title="Polls created by me">
+			<% for(Poll poll : me.getPolls()) { %>
 				<carditem link="pollDetails.jsp?id=1">
-					<cardtoken label="Title: ">this is a mock poll, it is not real</cardtoken>
-					<cardtoken label=" On ">2016.05.01</cardtoken>
-					<cardtoken label=" State ">open</cardtoken>
+					<cardtoken label="Title: "><%= poll.getTitle() %></cardtoken>
+					<cardtoken label=" On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
+					<cardtoken label=" Status: "><%= poll.getStatus() %></cardtoken>
 				</carditem>
 			</card>
+		<%  	} 
+			} %>
 			<% for(Creator creator : allCreators.getList()) { %>
 			<card type="list" class="small-list-card" title="Polls created by <%= creator.getUsername() %>">
 				<% for(Poll poll : creator.getPolls()) { %>
