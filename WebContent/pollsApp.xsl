@@ -108,7 +108,7 @@
 						</ul>
 					</xsl:when>
 					<xsl:when test="@type='details'">
-						<table>
+						<table class="poll-details-table">
 							<xsl:apply-templates></xsl:apply-templates>
 						</table>
 					</xsl:when>
@@ -149,7 +149,12 @@
 							<xsl:apply-templates select="possibledate"></xsl:apply-templates>
 						</tr>
 					</thead>
-					<xsl:apply-templates select="response"></xsl:apply-templates>
+					<tbody>
+						<xsl:apply-templates select="response"></xsl:apply-templates>
+					</tbody>
+					<tfoot>
+						<xsl:apply-templates select="addresponse"></xsl:apply-templates>
+					</tfoot>
 				</table>
 			</td>
 		</tr>
@@ -176,6 +181,42 @@
 		<xsl:if test="@going='no'">
 			<td class="response-going-no danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 		</xsl:if>
+	</xsl:template>
+	
+	<xsl:template match="addresponse">
+		<tr>
+			<td>
+				<div class="input-group">
+				<input type="text" id="input_name" 
+					name="input_name" 
+					class="form-control" 
+					required="true" 
+					maxlength="15" 
+					placeholder="Name"
+					value="{@inputvalue}"></input>
+				<div class="input-group-addon"><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></div>
+				</div>
+			</td>
+			<xsl:apply-templates select="addresponsedate"></xsl:apply-templates>
+		</tr>
+		<tr>
+			<xsl:apply-templates select="addresponsebutton"></xsl:apply-templates>
+		</tr>
+	</xsl:template>
+	
+	<xsl:template match="addresponsedate">
+		<td class="add-response-date-td"><input type="checkbox" name="checkbox_response[]" value="{@date}"></input></td>
+	</xsl:template>
+	
+	<xsl:template match="addresponsebutton">
+		<td id="td-button-container">
+			<script src="pollsApp.js"></script>
+			<form id="addResponseForm" method="POST" action="addResponse.jsp">
+				<input type="hidden" name="input_poll_id" id="input_poll_id" value="{@pollid}"></input>
+				<button type="button" class="btn btn-success btn-block" onclick="{@onclick}">Add Response</button>
+			</form>
+		</td>
+		<td colspan="10" class="td-message-required"><span id="required-name-message" class="bg-danger text-danger">You did not provide any name.</span></td>
 	</xsl:template>
 	
 	<xsl:template match="getoutsection">

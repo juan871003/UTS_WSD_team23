@@ -12,7 +12,8 @@
 <% 
 	StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
-	DateFormat dateformatDateTime = new SimpleDateFormat("EEE, d MMM yyyy 'at' HH:mm aaa");
+	DateFormat dateformatDateTime = new SimpleDateFormat("EEE, d MMM yyyy 'at' hh:mm aaa");
+	DateFormat dateformatform = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
 	Creator me = (Creator)session.getAttribute("signed_creator");
 	String pollId = request.getParameter("id");
 	Creator pollCreator = null;
@@ -83,6 +84,14 @@
 							}
 					%>
 						</response>
+					<%  }
+						if(me==null || (me!=null && !me.getUsername().equals(pollCreator.getUsername()))) {	%>
+						<addresponse inputvalue="<%= me==null ? "" : me.getUsername() %>">
+					<% 		for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
+							<addresponsedate date="<%= dateformatform.format(meetingDate) %>"></addresponsedate>
+					<%		} %>
+							<addresponsebutton onclick="addResponse()" pollid="<%= pollId %>"></addresponsebutton>
+						</addresponse>
 					<%  } %>
 					</pollresponses>
 				</card>

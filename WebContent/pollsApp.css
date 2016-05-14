@@ -86,13 +86,21 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .poll-responses-table {
-	margin: 25px;
+	margin-top: 25px;
+}
+
+.poll-details-table {
+	margin:30px;
 }
 
 .response-possibledate-th {
 	background-color: #286090;
     color: #fff;
     max-width: 140px;
+}
+
+#td-button-container {
+	border:0px;
 }
 
 .response-name-td {
@@ -107,6 +115,21 @@ h1,h2,h3,h4,h5,h6 {
 .response-going-no {
 	color: #a94442;
 	text-align: center;
+}
+
+tfoot > tr > td.add-response-date-td {
+	text-align: center;
+	vertical-align: middle;
+	background-color: #f9f9f9;
+}
+
+#required-name-message {
+	display: none;
+}
+
+tfoot > tr > td.td-message-required {
+	text-align: center;
+	vertical-align: middle;
 }
 
 
