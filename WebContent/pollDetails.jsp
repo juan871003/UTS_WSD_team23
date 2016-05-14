@@ -11,7 +11,8 @@
 </jsp:useBean>
 <% 
 	StoredCreators allCreators = pollApp.getCreators();
-	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
+	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
+	DateFormat dateformatDateTime = new SimpleDateFormat("EEE, d MMM yyyy 'at' HH:mm aaa");
 	Creator me = (Creator)session.getAttribute("signed_creator");
 	String pollId = request.getParameter("id");
 	Creator pollCreator = null;
@@ -56,14 +57,33 @@
 					<cardrow label="Creator: "><%= pollCreator.getUsername() %></cardrow>
 					<cardrow label="Title: "><%= poll.getTitle() %></cardrow>
 					<cardrow label="Status: "><%= poll.getStatus() %></cardrow>
-					<cardrow label="Date of creation: "><%= dateformat.format(poll.getCreationDate()) %></cardrow>
+					<cardrow label="Date of creation: "><%= dateformatDate.format(poll.getCreationDate()) %></cardrow>
+					<% if(poll.getMeetingLocation().trim().length() > 0) { %>
+						<cardrow label="Location: "><%= poll.getMeetingLocation() %></cardrow>
+					<% } %>
 					<% if(poll.getDescription().trim().length() > 0) { %>
-						<cardrow label="Description: "><%= poll.getMeetingLocation() %></cardrow>
+						<cardrow label="Description: "><%= poll.getDescription() %></cardrow>
 					<% } %>
 					<pollresponses>
-					<% for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
-						<pollresponse></pollresponse>
-					<% } %>
+					<% 	for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
+						<possibledate><%= dateformatDateTime.format(meetingDate)%></possibledate>
+					<%	}
+						for(PollResponse pResponse : poll.getPollResponses()) {
+					%>
+						<response personName="<%= pResponse.getPersonName() %>">
+					<%
+							for(Date meetingDate : poll.getPossibleMeetingDates()){
+								if(pResponse.isDateInResponses(meetingDate)){
+					%>
+							<pollRdate going="yes"></pollRdate>
+					<%			} else { %>
+							<pollRdate going="no"></pollRdate>
+					<%			
+								}
+							}
+					%>
+						</response>
+					<%  } %>
 					</pollresponses>
 				</card>
 			</cardssection>

@@ -85,5 +85,28 @@ h1,h2,h3,h4,h5,h6 {
     font-size: 20px;
 }
 
+.poll-responses-table {
+	margin: 25px;
+}
+
+.response-possibledate-th {
+	background-color: #286090;
+    color: #fff;
+    max-width: 140px;
+}
+
+.response-name-td {
+	width: 200px;
+}
+
+.response-going-yes {
+	color: #449d44;
+	text-align: center;
+}
+
+.response-going-no {
+	color: #a94442;
+	text-align: center;
+}
 
 

@@ -132,6 +132,52 @@
 		<span><xsl:value-of select="@label"></xsl:value-of><b><xsl:value-of select="text()"></xsl:value-of></b></span>
 	</xsl:template>
 	
+	<xsl:template match="cardrow">
+		<tr>
+			<td><b><xsl:value-of select="@label"></xsl:value-of></b></td>
+			<td><xsl:value-of select="text()"></xsl:value-of></td>
+		</tr>
+	</xsl:template>
+	
+	<xsl:template match="pollresponses">
+		<tr>
+			<td colspan="2">
+				<table class="poll-responses-table table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th class="response-possibledate-th">Responses</th>
+							<xsl:apply-templates select="possibledate"></xsl:apply-templates>
+						</tr>
+					</thead>
+					<xsl:apply-templates select="response"></xsl:apply-templates>
+				</table>
+			</td>
+		</tr>
+	</xsl:template>
+	
+	<xsl:template match="possibledate">
+		<th class="response-possibledate-th"><xsl:value-of select="text()"></xsl:value-of></th>
+	</xsl:template>
+	
+	<xsl:template match="response">
+		<tr>
+			<td class="response-name-td">
+				<xsl:value-of select="@personName"></xsl:value-of>
+				<span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+			</td>
+			<xsl:apply-templates select="pollRdate"></xsl:apply-templates>
+		</tr>
+	</xsl:template>
+	
+	<xsl:template match="pollRdate">
+		<xsl:if test="@going='yes'">
+			<td class="response-going-yes success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+		</xsl:if>
+		<xsl:if test="@going='no'">
+			<td class="response-going-no danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+		</xsl:if>
+	</xsl:template>
+	
 	<xsl:template match="getoutsection">
 		<div class="getout-content">
 			<p class="bg-info"><xsl:value-of select="@message"></xsl:value-of></p>
@@ -164,6 +210,8 @@
 			</div>
 		</div>
 	</xsl:template>
+	
+	
 </xsl:stylesheet>
 
 
