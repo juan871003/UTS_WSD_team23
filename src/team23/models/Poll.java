@@ -31,8 +31,8 @@ public class Poll implements Serializable {
 	@XmlElementWrapper(name="possibleMeetingDates")
 	@XmlElement(name = "meetingDate")
 	private ArrayList<Date> possibleMeetingDates;
-	@XmlElementWrapper(name="responses")
-	@XmlElement(name = "response")
+	@XmlElementWrapper(name="all_responses")
+	@XmlElement(name = "person_response")
 	private ArrayList<PollResponse> pollResponses;
 	
 	public Poll() { }
