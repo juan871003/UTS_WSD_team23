@@ -12,6 +12,7 @@
 	StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
 	Creator me = (Creator)session.getAttribute("signed_creator");
+	String filter = request.getParameter("filter");
 %>
 <masterpage title="Home"> 
 	<menu> 
@@ -24,31 +25,45 @@
 	</menu> 
 	<content>
 		<buttonssection>
+			<% if (me==null) { %>
 			<buttonlink link="login.jsp" type="primary">Login</buttonlink>
 			<buttonlink link="signup.jsp" type="success">Sign Up</buttonlink>
+			<% } else { %>
+			<buttonlink link="logout.jsp" type="danger">Logout</buttonlink>	
+			<% 		if (filter==null || (filter!=null && !filter.equals("creator_only"))) {	%>	
+			<buttonlink link="index.jsp?filter=creator_only" type="info">Show my polls only</buttonlink>
+			<% 		}
+					if (filter!=null && filter.equals("creator_only")) { %>
+			<buttonlink link="index.jsp" type="info">Show all polls</buttonlink>
+			<%		}
+			   } %>
 		</buttonssection>
 		<cardssection>
 		<% if (me != null && me.getPolls().size() > 0 ) { %>
 			<card type="list" class="small-list-card" title="Polls created by me">
 			<% for(Poll poll : me.getPolls()) { %>
-				<carditem link="pollDetails.jsp?id=1">
+				<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
 					<cardtoken label="Title: "><%= poll.getTitle() %></cardtoken>
 					<cardtoken label=" On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
 					<cardtoken label=" Status: "><%= poll.getStatus() %></cardtoken>
 				</carditem>
-			</card>
-		<%  	} 
-			} %>
-			<% for(Creator creator : allCreators.getList()) { %>
-			<card type="list" class="small-list-card" title="Polls created by <%= creator.getUsername() %>">
-				<% for(Poll poll : creator.getPolls()) { %>
-				<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
-					<cardtoken label=" Title: "><%= poll.getTitle() %></cardtoken>
-					<cardtoken label=" Created On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
-				</carditem>
-				<% } %>
-			</card>
 			<% } %>
+			</card>
+		<% } %>
+		<% if (filter==null || (filter!=null && !filter.equals("creator_only"))) { %>
+			<% for(Creator creator : allCreators.getList()) { 
+					if(me==null || (me!= null && !creator.getUsername().equals(me.getUsername()))) { %>
+				<card type="list" class="small-list-card" title="Polls created by <%= creator.getUsername() %>">
+					<% for(Poll poll : creator.getPolls()) { %>
+					<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
+						<cardtoken label=" Title: "><%= poll.getTitle() %></cardtoken>
+						<cardtoken label=" Created On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
+					</carditem>
+				<%     } %>
+				</card>
+				<% 	}
+				} 
+			} %>
 		</cardssection> 
 	</content>
 </masterpage>

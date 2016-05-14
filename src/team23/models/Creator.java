@@ -56,4 +56,13 @@ public class Creator implements Serializable {
 		polls.add(poll);
 	}
 	
+	public Poll getPoll(String pollId){
+		for(Poll poll : polls){
+			if(poll.getPollID().toString().equals(pollId)){
+				return poll;
+			}
+		}
+		return null;
+	}
+	
 }
