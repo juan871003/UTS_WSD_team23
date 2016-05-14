@@ -61,6 +61,4 @@ public class PollApplication {
 	public void save() {
 		setCreators(creators);
 	}
-	
-
 }

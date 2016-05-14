@@ -46,5 +46,15 @@ public class StoredCreators implements Serializable {
 		}
 		return null;
 	}
-
+	
+	public Creator getPollCreator(String pollId){
+		for (Creator creator : list) {
+			for (Poll poll : creator.getPolls()){
+				if(poll.getPollID().toString().equals(pollId)){
+					return creator;
+				}
+			}
+		}
+		return null;
+	}
 }

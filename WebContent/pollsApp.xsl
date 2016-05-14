@@ -107,6 +107,11 @@
 							<xsl:apply-templates></xsl:apply-templates>
 						</ul>
 					</xsl:when>
+					<xsl:when test="@type='details'">
+						<table>
+							<xsl:apply-templates></xsl:apply-templates>
+						</table>
+					</xsl:when>
 					<xsl:otherwise>
 						<xsl:apply-templates></xsl:apply-templates>
 					</xsl:otherwise>
