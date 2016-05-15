@@ -17,31 +17,53 @@ public class AppXMLInitialiser {
 		Creator creator2 = new Creator("Pieter", "asdf");
 		
 		ArrayList<Date> possibleMeetingDates1 = new ArrayList<Date>();
-		possibleMeetingDates1.add(new GregorianCalendar(2016,5,15).getTime());
-		possibleMeetingDates1.add(new GregorianCalendar(2016,5,16).getTime());
-		possibleMeetingDates1.add(new GregorianCalendar(2016,5,17).getTime());
-		ArrayList<PollResponse> responses1 = new ArrayList<PollResponse>();
-		responses1.add(new PollResponse("Sang", new GregorianCalendar(2016,5,15).getTime()));
-		responses1.add(new PollResponse("Sang", new GregorianCalendar(2016,5,16).getTime()));
-		responses1.add(new PollResponse("Juan", new GregorianCalendar(2016,5,16).getTime()));
+		possibleMeetingDates1.add(new GregorianCalendar(2016,5,15,13,30,0).getTime());
+		possibleMeetingDates1.add(new GregorianCalendar(2016,5,16,11,0,0).getTime());
+		possibleMeetingDates1.add(new GregorianCalendar(2016,5,17,12,30,0).getTime());
+		ArrayList<PollResponse> allResponses1 = new ArrayList<PollResponse>();
+		ArrayList<Date> sangResponses = new ArrayList<Date>();
+		sangResponses.add(new GregorianCalendar(2016,5,15,13,30,0).getTime());
+		sangResponses.add(new GregorianCalendar(2016,5,16,11,0,0).getTime());
+		ArrayList<Date> juanResponses = new ArrayList<Date>();
+		juanResponses.add(new GregorianCalendar(2016,5,16,11,0,0).getTime());
+		allResponses1.add(new PollResponse("Sang",sangResponses));
+		allResponses1.add(new PollResponse("Juan",juanResponses));
 		
 		ArrayList<Date> possibleMeetingDates2 = new ArrayList<Date>();
-		possibleMeetingDates2.add(new GregorianCalendar(2016,6,13).getTime());
-		possibleMeetingDates2.add(new GregorianCalendar(2016,6,14).getTime());
-		possibleMeetingDates2.add(new GregorianCalendar(2016,6,15).getTime());
-		ArrayList<PollResponse> responses2 = new ArrayList<PollResponse>();
-		responses2.add(new PollResponse("Jhon", new GregorianCalendar(2016,6,13).getTime()));
-		responses2.add(new PollResponse("Sofi", new GregorianCalendar(2016,6,13).getTime()));
-		responses2.add(new PollResponse("Eddy", new GregorianCalendar(2016,6,15).getTime()));
+		possibleMeetingDates2.add(new GregorianCalendar(2016,6,13,9,0,0).getTime());
+		possibleMeetingDates2.add(new GregorianCalendar(2016,6,13,10,0,0).getTime());
+		possibleMeetingDates2.add(new GregorianCalendar(2016,6,15,21,0,0).getTime());
+		ArrayList<PollResponse> allResponses2 = new ArrayList<PollResponse>();
+		ArrayList<Date> jhonResponse = new ArrayList<Date>();
+		jhonResponse.add(new GregorianCalendar(2016, 6, 13, 10, 0, 0).getTime());
+		jhonResponse.add(new GregorianCalendar(2016, 6, 13, 9, 0, 0).getTime());
+		ArrayList<Date> sofiResponse = new ArrayList<Date>();
+		sofiResponse.add(new GregorianCalendar(2016, 6, 13, 10, 0, 0).getTime());
+		sofiResponse.add(new GregorianCalendar(2016, 6, 15, 21, 0, 0).getTime());
+		ArrayList<Date> eddyResponse = new ArrayList<Date>();
+		eddyResponse.add(new GregorianCalendar(2016, 6, 15, 21, 0, 0).getTime());
+		allResponses2.add(new PollResponse("Jhon", jhonResponse));
+		allResponses2.add(new PollResponse("Sofi", sofiResponse));
+		allResponses2.add(new PollResponse("Eddy", eddyResponse));
+		
 		
 		ArrayList<Date> possibleMeetingDates3 = new ArrayList<Date>();
-		possibleMeetingDates3.add(new GregorianCalendar(2016,5,1).getTime());
-		possibleMeetingDates3.add(new GregorianCalendar(2016,5,12).getTime());
-		possibleMeetingDates3.add(new GregorianCalendar(2016,5,4).getTime());
-		ArrayList<PollResponse> responses3 = new ArrayList<PollResponse>();
-		responses3.add(new PollResponse("Pedro", new GregorianCalendar(2016,5,1).getTime()));
-		responses3.add(new PollResponse("Alister", new GregorianCalendar(2016,5,1).getTime()));
-		responses3.add(new PollResponse("Mary", new GregorianCalendar(2016,5,1).getTime()));
+		possibleMeetingDates3.add(new GregorianCalendar(2016,5,1,7,30,0).getTime());
+		possibleMeetingDates3.add(new GregorianCalendar(2016,5,1,12,0,0).getTime());
+		possibleMeetingDates3.add(new GregorianCalendar(2016,5,4,14,30,0).getTime());
+		ArrayList<PollResponse> allResponses3 = new ArrayList<PollResponse>();
+		ArrayList<Date> pedroResponse = new ArrayList<Date>();
+		pedroResponse.add(new GregorianCalendar(2016, 5, 1, 12, 0, 0).getTime());
+		pedroResponse.add(new GregorianCalendar(2016, 5, 4, 14, 30, 0).getTime());
+		ArrayList<Date> marcoResponse = new ArrayList<Date>();
+		marcoResponse.add(new GregorianCalendar(2016, 5, 1, 12, 0, 0).getTime());
+		marcoResponse.add(new GregorianCalendar(2016, 5, 4, 14, 30, 0).getTime());
+		marcoResponse.add(new GregorianCalendar(2016, 5, 1, 12, 0, 0).getTime());
+		ArrayList<Date> maryResponse = new ArrayList<Date>();
+		maryResponse.add(new GregorianCalendar(2016, 5, 1, 12, 0, 0).getTime());
+		allResponses3.add(new PollResponse("Pedro", pedroResponse));
+		allResponses3.add(new PollResponse("Marco", marcoResponse));
+		allResponses3.add(new PollResponse("Mary", maryResponse));
 		
 		Poll poll2 = new Poll(
 				UUID.randomUUID(), 
@@ -51,7 +73,7 @@ public class AppXMLInitialiser {
 				"description 2", 
 				"open", 
 				possibleMeetingDates2, 
-				responses2);
+				allResponses2);
 		creator2.addPoll(poll2);
 		
 		Poll poll1 = new Poll(
@@ -62,7 +84,7 @@ public class AppXMLInitialiser {
 				"description 1", 
 				"open", 
 				possibleMeetingDates1, 
-				responses1);
+				allResponses1);
 		creator1.addPoll(poll1);
 		
 		Poll poll3 = new Poll(
@@ -73,7 +95,7 @@ public class AppXMLInitialiser {
 				"description 3", 
 				"open", 
 				possibleMeetingDates3, 
-				responses3);
+				allResponses3);
 		creator2.addPoll(poll3);
 		
 		StoredCreators creators = new StoredCreators();

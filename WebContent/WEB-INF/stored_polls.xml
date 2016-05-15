@@ -2,60 +2,81 @@
 <creators>
     <creator username="Michael" password="asdf">
         <createdpolls>
-            <poll id="520538c1-1b40-4919-8d15-0d5a9a66b7e4">
+            <poll id="64b656d6-484d-48a9-a562-63987d026e36">
                 <title>poll 1</title>
                 <creationDate>2016-05-15T00:00:00+10:00</creationDate>
                 <meetingLocation>location 1</meetingLocation>
                 <description>description 1</description>
                 <status>open</status>
                 <possibleMeetingDates>
-                    <meetingDate>2016-06-15T00:00:00+10:00</meetingDate>
-                    <meetingDate>2016-06-16T00:00:00+10:00</meetingDate>
-                    <meetingDate>2016-06-17T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-15T13:30:00+10:00</meetingDate>
+                    <meetingDate>2016-06-16T11:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-17T12:30:00+10:00</meetingDate>
                 </possibleMeetingDates>
-                <responses>
-                    <response personName="Sang" response="2016-06-15T00:00:00+10:00"/>
-                    <response personName="Sang" response="2016-06-16T00:00:00+10:00"/>
-                    <response personName="Juan" response="2016-06-16T00:00:00+10:00"/>
-                </responses>
+                <all_responses>
+                    <person_response personName="Sang">
+                        <response>2016-06-15T13:30:00+10:00</response>
+                        <response>2016-06-16T11:00:00+10:00</response>
+                    </person_response>
+                    <person_response personName="Juan">
+                        <response>2016-06-16T11:00:00+10:00</response>
+                    </person_response>
+                </all_responses>
             </poll>
         </createdpolls>
     </creator>
     <creator username="Pieter" password="asdf">
         <createdpolls>
-            <poll id="0924ad73-ee4f-45e9-b8be-bf5e19e75397">
+            <poll id="91fc607e-f890-4f56-908b-78f7fb5dadf9">
                 <title>poll 2</title>
                 <creationDate>2016-06-01T00:00:00+10:00</creationDate>
                 <meetingLocation>location 2</meetingLocation>
                 <description>description 2</description>
                 <status>open</status>
                 <possibleMeetingDates>
-                    <meetingDate>2016-07-13T00:00:00+10:00</meetingDate>
-                    <meetingDate>2016-07-14T00:00:00+10:00</meetingDate>
-                    <meetingDate>2016-07-15T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-07-13T09:00:00+10:00</meetingDate>
+                    <meetingDate>2016-07-13T10:00:00+10:00</meetingDate>
+                    <meetingDate>2016-07-15T21:00:00+10:00</meetingDate>
                 </possibleMeetingDates>
-                <responses>
-                    <response personName="Jhon" response="2016-07-13T00:00:00+10:00"/>
-                    <response personName="Sofi" response="2016-07-13T00:00:00+10:00"/>
-                    <response personName="Eddy" response="2016-07-15T00:00:00+10:00"/>
-                </responses>
+                <all_responses>
+                    <person_response personName="Jhon">
+                        <response>2016-07-13T10:00:00+10:00</response>
+                        <response>2016-07-13T09:00:00+10:00</response>
+                    </person_response>
+                    <person_response personName="Sofi">
+                        <response>2016-07-13T10:00:00+10:00</response>
+                        <response>2016-07-15T21:00:00+10:00</response>
+                    </person_response>
+                    <person_response personName="Eddy">
+                        <response>2016-07-15T21:00:00+10:00</response>
+                    </person_response>
+                </all_responses>
             </poll>
-            <poll id="c109f38c-cbe5-482f-9dbf-4326fcf99d58">
+            <poll id="bd1b55e9-8082-451f-90dc-ee2259614e9e">
                 <title>poll 3</title>
                 <creationDate>2016-05-28T00:00:00+10:00</creationDate>
                 <meetingLocation>location 3</meetingLocation>
                 <description>description 3</description>
                 <status>open</status>
                 <possibleMeetingDates>
-                    <meetingDate>2016-06-01T00:00:00+10:00</meetingDate>
-                    <meetingDate>2016-06-12T00:00:00+10:00</meetingDate>
-                    <meetingDate>2016-06-04T00:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-01T07:30:00+10:00</meetingDate>
+                    <meetingDate>2016-06-01T12:00:00+10:00</meetingDate>
+                    <meetingDate>2016-06-04T14:30:00+10:00</meetingDate>
                 </possibleMeetingDates>
-                <responses>
-                    <response personName="Pedro" response="2016-06-01T00:00:00+10:00"/>
-                    <response personName="Alister" response="2016-06-01T00:00:00+10:00"/>
-                    <response personName="Mary" response="2016-06-01T00:00:00+10:00"/>
-                </responses>
+                <all_responses>
+                    <person_response personName="Pedro">
+                        <response>2016-06-01T12:00:00+10:00</response>
+                        <response>2016-06-04T14:30:00+10:00</response>
+                    </person_response>
+                    <person_response personName="Marco">
+                        <response>2016-06-01T12:00:00+10:00</response>
+                        <response>2016-06-04T14:30:00+10:00</response>
+                        <response>2016-06-01T12:00:00+10:00</response>
+                    </person_response>
+                    <person_response personName="Mary">
+                        <response>2016-06-01T12:00:00+10:00</response>
+                    </person_response>
+                </all_responses>
             </poll>
         </createdpolls>
     </creator>
