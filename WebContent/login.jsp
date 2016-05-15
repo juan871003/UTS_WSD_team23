@@ -31,9 +31,8 @@
 				session.setAttribute("signed_creator", me);	
 				response.sendRedirect("index.jsp");
 			}
-			else {
-	%>
-	<loginsection formaction="login.jsp" usernameinput="input_username" passwordinput="input_password" loginfailedmsg="Incorrect username or password"></loginsection>
-	<% 		}
+			else { %>
+				<loginsection formaction="login.jsp" usernameinput="input_username" passwordinput="input_password" loginfailedmsg="Incorrect username or password"></loginsection>
+			<% }
 		} %>
 </masterpage>

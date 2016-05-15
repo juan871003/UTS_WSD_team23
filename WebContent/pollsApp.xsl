@@ -164,6 +164,26 @@
 			</div>
 		</div>
 	</xsl:template>
+	
+	<xsl:template match="newpollinput">
+		<div class="row">
+			<div class="card login-card container">
+				<div class="page-header text-center sign-title">
+	                <h1>New Poll</h1>
+	            </div>
+					<form action="{@formaction}" method="POST">
+					<table>
+					<tr><td>Poll Title</td><td><input name="{@title}" id="{@title}"/></td></tr>
+					<tr><td>Meeting Location</td><td><input name="{@location}" id="{@location}"/></td></tr>
+					<tr><td>Description</td><td><input name="{@description}" id="{@description}"/></td></tr>
+					<tr><td>Possible Time</td><td><input name="{@time}" id="{@time}"/></td></tr>
+					<tr><td></td><td><input type="submit" value="CREATE"/></td></tr>
+					</table>
+					</form>
+			</div>
+		</div>
+	</xsl:template>
+
 </xsl:stylesheet>
 
 

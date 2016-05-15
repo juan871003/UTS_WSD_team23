@@ -10,7 +10,7 @@
 </jsp:useBean>
 <% 
 	StoredCreators allCreators = pollApp.getCreators();
-	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
+	DateFormat dateformat = new SimpleDateFormat("dd.MM.yyyy");
 	Creator me = (Creator)session.getAttribute("signed_creator");
 	String filter = request.getParameter("filter");
 %>
@@ -30,6 +30,8 @@
 			<buttonlink link="signup.jsp" type="success">Sign Up</buttonlink>
 			<% } else { %>
 			<buttonlink link="logout.jsp" type="danger">Logout</buttonlink>	
+			<buttonlink link="newPoll.jsp" type="info">Create new poll</buttonlink>
+			
 			<% 		if (filter==null || (filter!=null && !filter.equals("creator_only"))) {	%>	
 			<buttonlink link="index.jsp?filter=creator_only" type="info">Show my polls only</buttonlink>
 			<% 		}

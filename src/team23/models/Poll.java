@@ -1,6 +1,8 @@
 package team23.models;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -48,6 +50,20 @@ public class Poll implements Serializable {
 		this.status = status;
 		this.possibleMeetingDates = possibleMeetingDates;
 		this.pollResponses = pollResponses;
+	}
+	
+	public Poll(String title, String meetingLocation, String description, 
+			ArrayList<Date> possibleMeetingDates){
+		DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+		Date date = new Date();
+		dateFormat.format(date);
+		this.pollID = UUID.randomUUID();
+		this.title = title;
+		this.creationDate = date;
+		this.meetingLocation = meetingLocation;
+		this.status = "open";
+		this.possibleMeetingDates = possibleMeetingDates;
+		this.pollResponses = null;
 	}
 	
 	public UUID getPollID() {

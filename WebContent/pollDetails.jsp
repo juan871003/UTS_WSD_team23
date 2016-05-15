@@ -11,7 +11,7 @@
 </jsp:useBean>
 <% 
 	StoredCreators allCreators = pollApp.getCreators();
-	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
+	DateFormat dateformat = new SimpleDateFormat("dd.MM.yyyy");
 	Creator me = (Creator)session.getAttribute("signed_creator");
 	String pollId = request.getParameter("id");
 	Creator pollCreator = null;
