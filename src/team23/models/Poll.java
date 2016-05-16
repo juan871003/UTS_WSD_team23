@@ -109,4 +109,8 @@ public class Poll implements Serializable {
 	public void setPollResponses(ArrayList<PollResponse> pollResponses) {
 		this.pollResponses = pollResponses;
 	}
+	
+	public void addResponse(PollResponse pollResponse){
+		this.pollResponses.add(pollResponse);
+	}
 }
