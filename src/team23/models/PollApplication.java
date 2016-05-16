@@ -34,6 +34,7 @@ public class PollApplication {
 			FileInputStream fin = new FileInputStream(filePath);
 			creators = (StoredCreators) u.unmarshal(fin); // This loads the "polls" object
 			fin.close();
+			this.filePath = filePath;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,6 +60,6 @@ public class PollApplication {
 	}
 	
 	public void save() {
-		setCreators(creators);
+		setCreators(this.creators);
 	}
 }

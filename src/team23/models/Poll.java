@@ -33,8 +33,8 @@ public class Poll implements Serializable {
 	@XmlElementWrapper(name="possibleMeetingDates")
 	@XmlElement(name = "meetingDate")
 	private ArrayList<Date> possibleMeetingDates;
-	@XmlElementWrapper(name="responses")
-	@XmlElement(name = "response")
+	@XmlElementWrapper(name="all_responses")
+	@XmlElement(name = "person_response")
 	private ArrayList<PollResponse> pollResponses;
 	
 	public Poll() { }
@@ -124,5 +124,9 @@ public class Poll implements Serializable {
 
 	public void setPollResponses(ArrayList<PollResponse> pollResponses) {
 		this.pollResponses = pollResponses;
+	}
+	
+	public void addResponse(PollResponse pollResponse){
+		this.pollResponses.add(pollResponse);
 	}
 }
