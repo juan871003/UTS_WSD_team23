@@ -65,7 +65,7 @@
 					<% if(poll.getDescription().trim().length() > 0) { %>
 						<cardrow label="Description: "><%= poll.getDescription() %></cardrow>
 					<% } %>
-					<pollresponses>
+					<pollresponses pollid="<%= pollId %>">
 					<% 	for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
 						<possibledate><%= dateformatDateTime.format(meetingDate)%></possibledate>
 					<%	}
@@ -90,7 +90,6 @@
 					<% 		for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
 							<addresponsedate date="<%= dateformatform.format(meetingDate) %>"></addresponsedate>
 					<%		} %>
-							<addresponsebutton onclick="addResponse()" pollid="<%= pollId %>"></addresponsebutton>
 						</addresponse>
 					<%  } %>
 					</pollresponses>

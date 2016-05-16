@@ -142,20 +142,24 @@
 	<xsl:template match="pollresponses">
 		<tr>
 			<td colspan="2">
-				<table class="poll-responses-table table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th class="response-possibledate-th">Responses</th>
-							<xsl:apply-templates select="possibledate"></xsl:apply-templates>
-						</tr>
-					</thead>
-					<tbody>
-						<xsl:apply-templates select="response"></xsl:apply-templates>
-					</tbody>
-					<tfoot>
-						<xsl:apply-templates select="addresponse"></xsl:apply-templates>
-					</tfoot>
-				</table>
+				<script src="pollsApp.js"></script>
+				<form id="addResponseForm" method="POST" action="addResponse.jsp" onsubmit="return validateAddResponse();">
+					<input type="hidden" name="input_poll_id" id="input_poll_id" value="{@pollid}"></input>
+					<table class="poll-responses-table table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th class="response-possibledate-th">Responses</th>
+								<xsl:apply-templates select="possibledate"></xsl:apply-templates>
+							</tr>
+						</thead>
+						<tbody>
+							<xsl:apply-templates select="response"></xsl:apply-templates>
+						</tbody>
+						<tfoot>
+							<xsl:apply-templates select="addresponse"></xsl:apply-templates>
+						</tfoot>
+					</table>
+				</form>
 			</td>
 		</tr>
 	</xsl:template>
@@ -200,23 +204,19 @@
 			<xsl:apply-templates select="addresponsedate"></xsl:apply-templates>
 		</tr>
 		<tr>
-			<xsl:apply-templates select="addresponsebutton"></xsl:apply-templates>
+			<td id="td-button-container">
+				<button type="submit" class="btn btn-success btn-block" >Add Response</button>
+			</td>
+			<td colspan="10" class="td-message-required"><span id="required-name-message" class="bg-danger text-danger">You did not provide any name.</span></td>
 		</tr>
 	</xsl:template>
 	
 	<xsl:template match="addresponsedate">
-		<td class="add-response-date-td"><input type="checkbox" name="checkbox_response[]" value="{@date}"></input></td>
+		<td class="add-response-date-td"><input type="checkbox" name="checkbox_response" value="{@date}"></input></td>
 	</xsl:template>
 	
 	<xsl:template match="addresponsebutton">
-		<td id="td-button-container">
-			<script src="pollsApp.js"></script>
-			<form id="addResponseForm" method="POST" action="addResponse.jsp">
-				<input type="hidden" name="input_poll_id" id="input_poll_id" value="{@pollid}"></input>
-				<button type="button" class="btn btn-success btn-block" onclick="{@onclick}">Add Response</button>
-			</form>
-		</td>
-		<td colspan="10" class="td-message-required"><span id="required-name-message" class="bg-danger text-danger">You did not provide any name.</span></td>
+		
 	</xsl:template>
 	
 	<xsl:template match="getoutsection">
