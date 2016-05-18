@@ -35,6 +35,8 @@
 			<buttonlink link="signup.jsp" type="success">Sign Up</buttonlink>
 			<% } else { %>
 			<buttonlink link="logout.jsp" type="danger">Logout</buttonlink>	
+			<buttonlink link="newPoll.jsp" type="info">Create new poll</buttonlink>
+			
 			<% 		if (filter==null || (filter!=null && !filter.equals("creator_only"))) {	%>	
 			<buttonlink link="index.jsp?filter=creator_only" type="info">Show my polls only</buttonlink>
 			<% 		}
