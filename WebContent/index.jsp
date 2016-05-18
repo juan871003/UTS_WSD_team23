@@ -9,9 +9,14 @@
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
 <% 
-	StoredCreators allCreators = pollApp.getCreators();
-	DateFormat dateformat = new SimpleDateFormat("dd.MM.yyyy");
-	Creator me = (Creator)session.getAttribute("signed_creator");
+	//StoredCreators allCreators = pollApp.getCreators();
+	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
+	
+	Creator me = null;
+	String myUsername = (String)session.getAttribute("signed_creator_username");
+	if(myUsername!=null && myUsername.length() > 0){
+		me = pollApp.getCreator(myUsername);//allCreators.getCreator(myUsername);	
+	}
 	String filter = request.getParameter("filter");
 %>
 <masterpage title="Home"> 
@@ -43,7 +48,8 @@
 		<cardssection>
 		<% if (me != null && me.getPolls().size() > 0 ) { %>
 			<card type="list" class="small-list-card" title="Polls created by me">
-			<% for(Poll poll : me.getPolls()) { %>
+			<% 	//lists polls created by me->signed user (list open and also close polls)
+				for(Poll poll : me.getPolls()) { %>
 				<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
 					<cardtoken label="Title: "><%= poll.getTitle() %></cardtoken>
 					<cardtoken label=" On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
@@ -53,15 +59,21 @@
 			</card>
 		<% } %>
 		<% if (filter==null || (filter!=null && !filter.equals("creator_only"))) { %>
-			<% for(Creator creator : allCreators.getList()) { 
-					if(me==null || (me!= null && !creator.getUsername().equals(me.getUsername()))) { %>
+			<% for(Creator creator : pollApp.getCreatorsList()/*allCreators.getList()*/) { 
+					//only lists polls that are not mine (polls not created by 'me'-> signed user)
+					if(me==null || (!pollApp.isSamePerson(me, creator))) { %>
 				<card type="list" class="small-list-card" title="Polls created by <%= creator.getUsername() %>">
-					<% for(Poll poll : creator.getPolls()) { %>
+					<% 	for(Poll poll : creator.getPolls()) { 
+						//only show 'open' polls
+							if(poll.getStatus().equals("open")) {
+					%>
 					<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
 						<cardtoken label=" Title: "><%= poll.getTitle() %></cardtoken>
 						<cardtoken label=" Created On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
 					</carditem>
-				<%     } %>
+				<%     		} 
+						} 
+				%>
 				</card>
 				<% 	}
 				} 

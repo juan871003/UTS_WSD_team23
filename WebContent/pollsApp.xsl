@@ -139,6 +139,29 @@
 		</tr>
 	</xsl:template>
 	
+	<xsl:template match="cardrowselectstatus">
+		<tr>
+			<td><b><xsl:value-of select="@label"></xsl:value-of></b></td>
+			<td>
+				<form action="updatePollStatus.jsp" method="POST">
+					<input type="hidden" name="input_poll_id" value="{@poll_id}"></input>
+					<select name="select_status" id="select_status" required="true" onchange="this.form.submit();">
+						<xsl:apply-templates select="selectstatusitem"></xsl:apply-templates>
+					</select>
+				</form>
+			</td>
+		</tr>
+	</xsl:template>
+	
+	<xsl:template match="selectstatusitem">
+		<option value="{@value}">
+			<xsl:if test="@selected='true'">
+				<xsl:attribute name="selected">true</xsl:attribute>
+			</xsl:if>
+			<xsl:value-of select="text()"></xsl:value-of>
+		</option>
+	</xsl:template>
+	
 	<xsl:template match="pollresponses">
 		<tr>
 			<td colspan="2">

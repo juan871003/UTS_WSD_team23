@@ -62,4 +62,36 @@ public class PollApplication {
 	public void save() {
 		setCreators(this.creators);
 	}
+	
+	public void addResponse(String pollId, PollResponse pollResponse) {
+		creators.getPollCreator(pollId).getPoll(pollId).addResponse(pollResponse);
+	}
+	
+	public Creator getCreator(String username){
+		return creators.getCreator(username);
+	}
+	
+	public Creator signCreator(String username, String password){
+		return creators.getCreator(username, password);
+	}
+	
+	public ArrayList<Creator> getCreatorsList(){
+		return creators.getList();
+	}
+	
+	public Poll getPoll(String pollId){
+		return creators.getPollCreator(pollId).getPoll(pollId);
+	}
+	
+	public Creator getPollCreator(String pollId){
+		return creators.getPollCreator(pollId);
+	}
+	
+	public boolean isSamePerson(Creator c1, Creator c2){
+		return (c1!=null && c2!=null) && c1.getUsername().equals(c2.getUsername());
+	}
+	
+	public void setPollStatus(String pollId, String status) {
+		getPoll(pollId).setStatus(status);
+	}
 }
