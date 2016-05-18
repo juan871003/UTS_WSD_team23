@@ -10,20 +10,30 @@
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
 <% 
-	StoredCreators allCreators = pollApp.getCreators();
+	//StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
 	DateFormat dateformatDateTime = new SimpleDateFormat("EEE, d MMM yyyy 'at' hh:mm aaa");
 	DateFormat dateformatform = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
-	Creator me = (Creator)session.getAttribute("signed_creator");
+	String myUsername = (String)session.getAttribute("signed_creator_username");
+	Creator me = null;
+	if(myUsername!=null && myUsername.length()>0){
+		me = pollApp.getCreator(myUsername);	
+	}
 	String pollId = request.getParameter("id");
 	Creator pollCreator = null;
 	Poll poll = null;
+	if(pollId!=null){
+		poll = pollApp.getPoll(pollId);
+		pollCreator = pollApp.getPollCreator(pollId);
+	}
+	/*
 	if (pollId!= null) {
 		pollCreator = allCreators.getPollCreator(pollId);
 		if (pollCreator!=null) {
 			poll = pollCreator.getPoll(pollId);
 		}
 	}
+	*/
 %>
 <masterpage title="Poll Details">
 	<menu> 
@@ -38,10 +48,7 @@
 		<% if(poll==null){ %>
 		<getoutsection message="Sorry, poll not found"></getoutsection>
 		<!-- if a poll is closed and you are not the owner then you are not authorised -->
-		<% } else if ((poll.getStatus().equals("close") && me==null) 
-				|| (poll.getStatus().equals("close") 
-						&& me!=null 
-						&& !me.getUsername().equals(pollCreator.getUsername())) ) { %>
+		<% } else if (poll.getStatus().equals("close") && !pollApp.isSamePerson(me,pollCreator)) { %>
 		<getoutsection message="You are not authorised to see this poll"></getoutsection>
 		<% } else { %>
 			<buttonssection>
@@ -57,7 +64,14 @@
 				<card type="details" class="big-details-card" title="Poll Details">
 					<cardrow label="Creator: "><%= pollCreator.getUsername() %></cardrow>
 					<cardrow label="Title: "><%= poll.getTitle() %></cardrow>
+					<% if(pollApp.isSamePerson(me, pollCreator)) { %>
+					<cardrowselectstatus label="Status" poll_id="<%= pollId %>">
+						<selectstatusitem <%= poll.getStatus().equals("open")?"selected='true'":"" %> value="open">Open</selectstatusitem>
+						<selectstatusitem <%= poll.getStatus().equals("close")?"selected='true'":"" %> value="close">Close</selectstatusitem>
+					</cardrowselectstatus>
+					<% } else { %>
 					<cardrow label="Status: "><%= poll.getStatus() %></cardrow>
+					<% } %>
 					<cardrow label="Date of creation: "><%= dateformatDate.format(poll.getCreationDate()) %></cardrow>
 					<% if(poll.getMeetingLocation().trim().length() > 0) { %>
 						<cardrow label="Location: "><%= poll.getMeetingLocation() %></cardrow>
@@ -85,7 +99,9 @@
 					%>
 						</response>
 					<%  }
-						if(me==null || (me!=null && !me.getUsername().equals(pollCreator.getUsername()))) {	%>
+						//if user is not signed or user is not the owner of this poll then user can add new responses
+						//if user is the owner user should not be able to add new responses to her own poll, just see the responses.
+						if(me==null || !pollApp.isSamePerson(me, pollCreator)) {	%>
 						<addresponse inputvalue="<%= me==null ? "" : me.getUsername() %>">
 					<% 		for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
 							<addresponsedate date="<%= dateformatform.format(meetingDate) %>"></addresponsedate>

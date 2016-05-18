@@ -8,7 +8,13 @@
 <jsp:useBean id="pollApp" class="team23.models.PollApplication">
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
-<% Creator me = (Creator)session.getAttribute("signed_creator"); %>
+<% 
+	String myUsername = (String)session.getAttribute("signed_creator_username");
+	Creator me = null;
+	if(myUsername!=null && myUsername.length()>0){
+		me = pollApp.getCreator(myUsername);
+	}
+%>
 <masterpage title="Login">
 	<menu>
 		<menuitemleft title="Home" link="index.jsp"></menuitemleft>
@@ -25,10 +31,10 @@
 	<% } else { 
 			String username = request.getParameter("input_username");
 			String password = request.getParameter("input_password");
-			me = pollApp.getCreators().getCreator(username, password);
+			me = pollApp.signCreator(username, password);
 			
 			if (me != null) {
-				session.setAttribute("signed_creator", me);	
+				session.setAttribute("signed_creator_username", me.getUsername());	
 				response.sendRedirect("index.jsp");
 			}
 			else {
