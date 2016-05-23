@@ -275,7 +275,6 @@
 		</div>
 	</xsl:template>
 	
-<<<<<<< HEAD
 	<xsl:template match="newpollinput">
 		<div class="row">
 			<div class="card login-card container">
@@ -294,10 +293,6 @@
 			</div>
 		</div>
 	</xsl:template>
-
-=======
-	
->>>>>>> refs/remotes/origin/master
 </xsl:stylesheet>
 
 
