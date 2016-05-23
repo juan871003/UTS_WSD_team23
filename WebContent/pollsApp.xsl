@@ -293,7 +293,10 @@
 			</div>
 		</div>
 	</xsl:template>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/Juan
 </xsl:stylesheet>
 
 
