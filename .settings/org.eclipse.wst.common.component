@@ -8,6 +8,12 @@
         <dependent-module archiveName="asm-3.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Jai/Downloads/asm-3.3.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jersey-bundle-1.17.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/juan8/Documents/Eclipse EE/jersey-bundle-1.17.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="asm-3.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/juan8/Documents/Eclipse EE/asm-3.3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="Team23"/>
         <property name="java-output-path" value="/Team23/build/classes"/>
     </wb-module>
