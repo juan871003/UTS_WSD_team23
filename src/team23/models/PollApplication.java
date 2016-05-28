@@ -208,4 +208,26 @@ public class PollApplication {
 				getPoll(pollId).setStatus(status);
 		}
 	}
+
+	public ArrayList<Poll> getPolls(Creator SignedCreator, Creator pollCreator, String status, int minResponses) {
+		ArrayList<Poll> result = new ArrayList<Poll>();
+		if (pollCreator != null) {
+			result = pollCreator.getPolls();
+		} else {
+			for (Creator creator : creators.getList()) {
+				result.addAll(creator.getPolls());
+				result.removeIf(p -> !p.getStatus().equals("open"));//remove all polls with status that are not 'open'
+			}
+		}
+		if (status != null
+				&&status.equals("close") //closed polls (only if user has permission to view them)
+				&& SignedCreator!=null
+				&& SignedCreator.getUsername().equals(pollCreator.getUsername())){
+			result.removeIf(p -> !p.getStatus().equals("close"));//remove all polls with status that are not 'close'
+		}
+		if (minResponses > 0) {
+			result.removeIf(p -> p.getPollResponses().size() < minResponses);
+		}
+		return result.size() > 0 ? result : null;
+	}
 }
