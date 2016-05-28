@@ -278,23 +278,32 @@
 	<xsl:template match="newpollinput">
 		<div class="row">
 			<div class="card login-card container">
-				<div class="page-header text-center sign-title">
-	                <h1>New Poll</h1>
-	            </div>
 					<form action="{@formaction}" method="POST">
-					<table>
-					<tr><td>Poll Title</td><td><input name="{@title}" id="{@title}"/></td></tr>
-					<tr><td>Meeting Location</td><td><input name="{@location}" id="{@location}"/></td></tr>
-					<tr><td>Description</td><td><input name="{@description}" id="{@description}"/></td></tr>
-					<tr><td>Possible Time</td><td><input name="{@time}" id="{@time}"/></td></tr>
-					<tr><td></td><td><input type="submit" value="CREATE"/></td></tr>
-					</table>
+						<div>
+							<input type="text" class="form-control" name="{@titleinput}" id="{@titleinput}" placeholder="Poll title"/>
+						</div>
+						<div>
+							<input type="text" class="form-control" name="{@locationinput}" id="{@locationinput}" placeholder="Meeting location"/>
+						</div>
+						<div>
+							<input type="text" class="form-control" name="{@descriptioninput}" id="{@descriptioninput}" placeholder="Description"/>
+						</div>
+						<div>
+						<input type="datetime-local" class="form-control" name="{@dateinput}" id="{@dateinput}"/>
+						</div>
+						<input type="submit" name="action" class="btn btn-primary btn-block" value="ADD ANOTHER TIME"/>
+						<input type="submit" name="action" class="btn btn-success btn-block" value="CREATE"/>
 					</form>
 			</div>
 		</div>
 	</xsl:template>
 
 </xsl:stylesheet>
+
+
+
+
+
 
 
 

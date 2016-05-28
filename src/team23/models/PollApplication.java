@@ -1,12 +1,14 @@
 package team23.models;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
@@ -39,6 +41,14 @@ public class PollApplication {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void marshall(String filePath) throws JAXBException, FileNotFoundException{
+		JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
+		
+		Marshaller m = jc.createMarshaller();
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.marshal(creators, new FileOutputStream(filePath));
 	}
 	
 	public StoredCreators getCreators() {

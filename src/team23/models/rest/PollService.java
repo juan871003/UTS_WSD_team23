@@ -48,13 +48,6 @@ public class PollService {
 		return match;
 	}
 	
-	@Path("/hello")
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String hello(){
-		return "Hello World";
-	}
-	
 	@Path("/polls")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
