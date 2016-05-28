@@ -9,13 +9,12 @@
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
 <% 
-	//StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
 	
 	Creator me = null;
 	String myUsername = (String)session.getAttribute("signed_creator_username");
 	if(myUsername!=null && myUsername.length() > 0){
-		me = pollApp.getCreator(myUsername);//allCreators.getCreator(myUsername);	
+		me = pollApp.getCreator(myUsername);
 	}
 	String filter = request.getParameter("filter");
 %>

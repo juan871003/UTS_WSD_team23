@@ -30,30 +30,44 @@ public class Poll implements Serializable {
 	private String description;
 	@XmlElement(name = "status")
 	private String status;
-	@XmlElementWrapper(name="possibleMeetingDates")
+	@XmlElementWrapper(name = "possibleMeetingDates")
 	@XmlElement(name = "meetingDate")
 	private ArrayList<Date> possibleMeetingDates;
-	@XmlElementWrapper(name="all_responses")
+	@XmlElementWrapper(name = "all_responses")
 	@XmlElement(name = "person_response")
 	private ArrayList<PollResponse> pollResponses;
-	
-	public Poll() { }
 
-	public Poll(UUID pollID, String title, Date creationDate, String meetingLocation,
-			String description, String status, ArrayList<Date> possibleMeetingDates,
-			ArrayList<PollResponse> pollResponses) {
-		this.pollID = pollID;
-		this.title = title;
-		this.creationDate = creationDate;
-		this.meetingLocation = meetingLocation;
-		this.description = description;
-		this.status = status;
-		this.possibleMeetingDates = possibleMeetingDates;
-		this.pollResponses = pollResponses;
+	/*
+	 * empty constructor, for serializable and marshal/unmarshal
+	 */
+	public Poll() {
 	}
-	
-	public Poll(String title, String meetingLocation, String description, 
-			ArrayList<Date> possibleMeetingDates){
+
+	/*
+	 * constructor with ID
+	 * @param 	pollID	id of the poll, cannot be null 
+	 */
+	public Poll(UUID pollID, String title, Date creationDate, String meetingLocation, String description, String status,
+			ArrayList<Date> possibleMeetingDates, ArrayList<PollResponse> pollResponses)
+			throws IllegalArgumentException {
+		if (pollID != null && pollID.toString().length() > 0) {
+			this.pollID = pollID;
+			this.title = title;
+			this.creationDate = creationDate;
+			this.meetingLocation = meetingLocation;
+			this.description = description;
+			this.status = status;
+			this.possibleMeetingDates = possibleMeetingDates;
+			this.pollResponses = pollResponses;
+		}
+		else 
+			throw new IllegalArgumentException("Poll, Constructor: pollID cannot be null or empty");
+	}
+
+	/*
+	 * comstructor without ID, id is generated inside constructor
+	 */
+	public Poll(String title, String meetingLocation, String description, ArrayList<Date> possibleMeetingDates) {
 		DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 		Date date = new Date();
 		dateFormat.format(date);
@@ -65,7 +79,7 @@ public class Poll implements Serializable {
 		this.possibleMeetingDates = possibleMeetingDates;
 		this.pollResponses = null;
 	}
-	
+
 	public UUID getPollID() {
 		return pollID;
 	}
@@ -114,6 +128,9 @@ public class Poll implements Serializable {
 		return possibleMeetingDates;
 	}
 
+	/*
+	 * overrides all the previous list of possible meeting dates for this poll
+	 */
 	public void setPossibleMeetingDates(ArrayList<Date> possibleMeetingDates) {
 		this.possibleMeetingDates = possibleMeetingDates;
 	}
@@ -122,11 +139,18 @@ public class Poll implements Serializable {
 		return pollResponses;
 	}
 
+	/*
+	 * overrides all the list of pollResponses
+	 */
 	public void setPollResponses(ArrayList<PollResponse> pollResponses) {
 		this.pollResponses = pollResponses;
 	}
-	
-	public void addResponse(PollResponse pollResponse){
+
+	/*
+	 * add a pollResoponse to the list of pollResponses
+	 * @param	pollResponse	pollResponse to be added to the existing list of responses
+	 */
+	public void addResponse(PollResponse pollResponse) {
 		this.pollResponses.add(pollResponse);
 	}
 }

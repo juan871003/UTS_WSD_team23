@@ -28,16 +28,9 @@
  				datesResponses.add(date);
  			}
  		}
- 		//Poll thePoll = pollApp.getPoll(pollId);
-		//Creator thePollCreator = pollApp.getCreators().getPollCreator(pollId);
-		//if(thePollCreator!=null){
-	//	Poll thePoll = thePollCreator.getPoll(pollId);
-		//if(thePoll!=null){
 		PollResponse newPollResponse = new PollResponse(name,datesResponses);
 		pollApp.addResponse(pollId, newPollResponse);
-		//thePoll.addResponse(newPollResponse);
 		pollApp.save();
-		//}
 	}
  	response.sendRedirect("pollDetails.jsp?id="+pollId);
 %>

@@ -42,7 +42,7 @@
 				<buttonlink link="index.jsp" type="info">Exisiting Polls</buttonlink>
 		</buttonssection>
 		<cardssection>
-		<% if(poll!=null) {
+		<% if(user!=null && poll!=null) {
 			user.addPoll(poll);
 			%><getoutsection message="Poll Added!"/><%
 		 }%>

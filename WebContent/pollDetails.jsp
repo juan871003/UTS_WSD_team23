@@ -10,7 +10,6 @@
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
 <% 
-	//StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
 	DateFormat dateformatDateTime = new SimpleDateFormat("EEE, d MMM yyyy 'at' hh:mm aaa");
 	DateFormat dateformatform = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
@@ -26,14 +25,6 @@
 		poll = pollApp.getPoll(pollId);
 		pollCreator = pollApp.getPollCreator(pollId);
 	}
-	/*
-	if (pollId!= null) {
-		pollCreator = allCreators.getPollCreator(pollId);
-		if (pollCreator!=null) {
-			poll = pollCreator.getPoll(pollId);
-		}
-	}
-	*/
 %>
 <masterpage title="Poll Details">
 	<menu> 
