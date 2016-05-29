@@ -37,6 +37,9 @@
 			<buttonlink link="logout.jsp" type="danger">Logout</buttonlink>	
 		<% } %>
 			<buttonlink link="index.jsp" type="info">Exisiting Polls</buttonlink>
+			<%if(request.getParameter("action") != null) {%>
+			<buttonlink link="newPoll.jsp" type="info">New Poll</buttonlink>
+			<%}%>
 		</buttonssection>
 	
 	<!-- if the form is submitted using the CREATE button, create a new poll with the form 
@@ -47,7 +50,13 @@
 	String title = request.getParameter("title");
 	String location = request.getParameter("location");
 	String description = request.getParameter("description");
-	Date date = dateformat.parse(request.getParameter("date"));
+	Date date;
+	if(request.getParameter("date") != null){
+		date = dateformat.parse(request.getParameter("date"));
+	}
+	else{
+		date = null;
+	}
 	if(session.getAttribute("current_poll") != null || date != null){
 		if(session.getAttribute("current_poll") != null){
 			possibleTimes = ((Poll)session.getAttribute("current_poll")).getPossibleMeetingDates();
@@ -69,14 +78,14 @@
 	<%} else {%>
 	
 	<cardsection>
-		<getoutsection message="Error: poll not added!"/>
+		<getoutsection message="Error: poll not added, must have at least one meeting date!"/>
 	</cardsection>
 	<!-- Otherwise if the form was submitted with the ADD ANOTHER TIME button, use the value
 		from the date/time input and store it in temporary poll, then store that poll in the
 		session so that it is persistent. -->
 <% }
 }
-else if(request.getParameter("action") != null && request.getParameter("action").equals("ADD ANOTHER TIME")) {
+else if(request.getParameter("action") != null && request.getParameter("action").equals("ADD MEETING TIME")) {
 	ArrayList<Date> possibleDates;
 		if(((Poll)session.getAttribute("current_poll"))!=null){
 			tempPoll = (Poll)session.getAttribute("current_poll");

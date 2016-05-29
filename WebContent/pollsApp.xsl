@@ -280,20 +280,24 @@
 			<div class="card login-card container">
 					<form action="{@formaction}" method="POST">
 						<div>
-							<input type="text" class="form-control" name="{@titleinput}" id="{@titleinput}" placeholder="Poll title"/>
+							<input type="text" class="form-control" name="{@titleinput}" id="{@titleinput}" placeholder="Poll title" required="true" maxlength="30"/>
 						</div>
 						<div>
-							<input type="text" class="form-control" name="{@locationinput}" id="{@locationinput}" placeholder="Meeting location"/>
+							<input type="text" class="form-control" name="{@locationinput}" id="{@locationinput}" placeholder="Meeting location" required="true" maxlength="40"/>
 						</div>
 						<div>
-							<input type="text" class="form-control" name="{@descriptioninput}" id="{@descriptioninput}" placeholder="Description"/>
+							<input type="text" class="form-control" name="{@descriptioninput}" id="{@descriptioninput}" placeholder="Description" required="true" maxlength="50"/>
 						</div>
-						<div>
-						<input type="datetime-local" class="form-control" name="{@dateinput}" id="{@dateinput}"/>
-						</div>
-						<input type="submit" name="action" class="btn btn-primary btn-block" value="ADD ANOTHER TIME"/>
+						
 						<input type="submit" name="action" class="btn btn-success btn-block" value="CREATE"/>
 					</form>
+					<form action="{@formaction}" method="POST">
+						<div>
+							<input type="datetime-local" class="form-control" name="{@dateinput}" id="{@dateinput}"/>
+						</div>
+						<input type="submit" name="action" class="btn btn-primary btn-block" value="ADD MEETING TIME"/>
+					</form>
+					
 			</div>
 		</div>
 	</xsl:template>
