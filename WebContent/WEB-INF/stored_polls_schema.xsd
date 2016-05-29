@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.UTS-WSD-TEAM23.com" xmlns="http://www.UTS-WSD-TEAM23.com"
+	elementFormDefault="qualified">
+
+
+<xs:simpleType name="status">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="(open|Open|Closed|closed)" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="username">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[A-Z][a-z]*" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="meetingdate">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}" />
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:element name="creators">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="creator" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="createdpolls" minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="poll" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="title" type="xs:string"/>
+												<xs:element name="creationDate" type="xs:string"/>
+												<xs:element name="meetingLocation" type="xs:string"/>
+												<xs:element name="description" type="xs:string"/>
+												<xs:element name="status" type="status"/> 
+												<xs:element name="possibleMeetingDates" minOccurs="1" maxOccurs="1">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="meetingDate" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="all_responses" minOccurs="1" maxOccurs="1">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="person_response" minOccurs="0" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="response" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+																	</xs:sequence>
+																	<xs:attribute name="personName" type="username"/>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="id" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="username" type="username"/>
+					<xs:attribute name="password" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

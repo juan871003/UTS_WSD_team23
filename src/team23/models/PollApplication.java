@@ -104,4 +104,35 @@ public class PollApplication {
 	public void setPollStatus(String pollId, String status) {
 		getPoll(pollId).setStatus(status);
 	}
+	
+	public void addCreator(Creator creator)
+	{
+		creators.addCreator(creator);
+	}
+	
+	//update the XML when a new creator is added
+	public void updateCreators()
+	{
+		try {
+			FileOutputStream fout = new FileOutputStream(filePath);
+			JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
+			Marshaller m = jc.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			m.marshal(creators, fout);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	//Checked the creators list and returns false if the username is unique
+	public boolean checkUnique(String username)
+	{
+		Creator test = getCreator(username);
+		if (test==null)
+		return false;
+		
+		return true;
+	}
+	
 }
