@@ -3,6 +3,7 @@ package team23.models;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
@@ -212,10 +213,10 @@ public class PollApplication {
 	public ArrayList<Poll> getPolls(Creator SignedCreator, Creator pollCreator, String status, int minResponses) {
 		ArrayList<Poll> result = new ArrayList<Poll>();
 		if (pollCreator != null) {
-			result = pollCreator.getPolls();
+			result = (ArrayList<Poll>) pollCreator.getPolls().clone();
 		} else {
 			for (Creator creator : creators.getList()) {
-				result.addAll(creator.getPolls());
+				result.addAll((ArrayList<Poll>) creator.getPolls().clone());
 				result.removeIf(p -> !p.getStatus().equals("open"));//remove all polls with status that are not 'open'
 			}
 		}

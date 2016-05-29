@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page language="java" contentType="text/xml; charset=UTF-8"
 	pageEncoding="UTF-8"%><?xml version="1.0" encoding="UTF-8"?>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -8,9 +9,7 @@
 <jsp:useBean id="pollApp" class="team23.models.PollApplication">
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
-<% 
-	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
-	
+<% 	
 	Creator me = null;
 	String myUsername = (String)session.getAttribute("signed_creator_username");
 	if(myUsername!=null && myUsername.length() > 0){
