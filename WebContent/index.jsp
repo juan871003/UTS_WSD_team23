@@ -31,7 +31,7 @@
 		<buttonssection>
 			<% if (me==null) { %>
 			<buttonlink link="login.jsp" type="primary">Login</buttonlink>
-			<buttonlink link="signup.jsp" type="success">Sign Up</buttonlink>
+			<buttonlink link="register.jsp" type="success">Sign Up</buttonlink>
 			<% } else { %>
 			<buttonlink link="logout.jsp" type="danger">Logout</buttonlink>	
 			<buttonlink link="newPoll.jsp" type="info">Create new poll</buttonlink>

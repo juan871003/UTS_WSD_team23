@@ -79,9 +79,11 @@ public class Poll implements Serializable {
 		this.pollID = UUID.randomUUID();
 		this.title = title;
 		this.creationDate = date;
+		this.description = description;
 		this.meetingLocation = meetingLocation;
 		this.status = "open";
 		this.possibleMeetingDates = possibleMeetingDates;
+		this.pollResponses = new ArrayList<PollResponse>();
 		if(pollResponses!=null){
 			this.pollResponses = pollResponses;
 		}

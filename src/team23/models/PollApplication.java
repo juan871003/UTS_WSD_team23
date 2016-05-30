@@ -1,6 +1,7 @@
 package team23.models;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
@@ -53,6 +55,14 @@ public class PollApplication {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void marshall(String filePath) throws JAXBException, FileNotFoundException{
+		JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
+		
+		Marshaller m = jc.createMarshaller();
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.marshal(creators, new FileOutputStream(filePath));
 	}
 
 	/*
@@ -285,4 +295,35 @@ public class PollApplication {
 		}
 		return false;
 	}
+	
+	public void addCreator(Creator creator)
+	{
+		creators.addCreator(creator);
+	}
+	
+	//update the XML when a new creator is added
+	public void updateCreators()
+	{
+		try {
+			FileOutputStream fout = new FileOutputStream(filePath);
+			JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
+			Marshaller m = jc.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			m.marshal(creators, fout);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	//Checked the creators list and returns false if the username is unique
+	public boolean checkUnique(String username)
+	{
+		Creator test = getCreator(username);
+		if (test==null)
+		return false;
+		
+		return true;
+	}
+	
 }
