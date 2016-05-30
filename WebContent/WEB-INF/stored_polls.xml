@@ -2,7 +2,7 @@
 <creators>
     <creator username="Michael" password="asdf">
         <createdpolls>
-            <poll id="64b656d6-484d-48a9-a562-63987d026e36">
+            <poll id="7183819f-a5f0-472f-a7e4-a691d19c7139">
                 <title>poll 1</title>
                 <creationDate>2016-05-15T00:00:00+10:00</creationDate>
                 <meetingLocation>location 1</meetingLocation>
@@ -27,7 +27,7 @@
     </creator>
     <creator username="Pieter" password="asdf">
         <createdpolls>
-            <poll id="91fc607e-f890-4f56-908b-78f7fb5dadf9">
+            <poll id="ac2de682-5bf3-4fb8-b623-802d1824d2f7">
                 <title>poll 2</title>
                 <creationDate>2016-06-01T00:00:00+10:00</creationDate>
                 <meetingLocation>location 2</meetingLocation>
@@ -52,7 +52,7 @@
                     </person_response>
                 </all_responses>
             </poll>
-            <poll id="bd1b55e9-8082-451f-90dc-ee2259614e9e">
+            <poll id="762b6f01-83ad-4445-b083-8cf72d34cb4d">
                 <title>poll 3</title>
                 <creationDate>2016-05-28T00:00:00+10:00</creationDate>
                 <meetingLocation>location 3</meetingLocation>

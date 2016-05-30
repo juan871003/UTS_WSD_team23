@@ -1,0 +1,70 @@
+﻿Merge remote-tracking branch 'refs/remotes/origin/Juan'
+
+# Conflicts:
+#	WebContent/pollSubmit.jsp
+#	build/classes/.gitignore
+#	build/classes/team23/models/Poll.class
+#	build/classes/team23/models/PollApplication.class
+#	src/team23/models/Poll.java
+#	src/team23/models/PollApplication.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   .settings/org.eclipse.core.resources.prefs
+#	new file:   WebContent/WEB-INF/lib/axis.jar
+#	new file:   WebContent/WEB-INF/lib/commons-discovery-0.2.jar
+#	new file:   WebContent/WEB-INF/lib/commons-logging.jar
+#	new file:   WebContent/WEB-INF/lib/jaxrpc.jar
+#	new file:   WebContent/WEB-INF/lib/saaj.jar
+#	new file:   WebContent/WEB-INF/lib/wsdl4j.jar
+#	modified:   WebContent/WEB-INF/stored_polls.xml
+#	new file:   WebContent/WEB-INF/sun-jaxws.xml
+#	modified:   WebContent/WEB-INF/web.xml
+#	modified:   WebContent/addResponse.jsp
+#	modified:   WebContent/index.jsp
+#	modified:   WebContent/pollDetails.jsp
+#	new file:   WebContent/pollSubmit.jsp
+#	modified:   build/classes/team23/models/AppXMLInitialiser.class
+#	modified:   build/classes/team23/models/Creator.class
+#	modified:   build/classes/team23/models/Poll.class
+#	modified:   build/classes/team23/models/PollApplication.class
+#	modified:   build/classes/team23/models/PollResponse.class
+#	modified:   build/classes/team23/models/StoredCreators.class
+#	modified:   src/team23/models/AppXMLInitialiser.java
+#	modified:   src/team23/models/Creator.java
+#	modified:   src/team23/models/Poll.java
+#	modified:   src/team23/models/PollApplication.java
+#	modified:   src/team23/models/PollResponse.java
+#	modified:   src/team23/models/StoredCreators.java
+#	new file:   src/uts/wsd/soap/Team23Soap.java
+#	new file:   src/uts/wsd/soap/client/Poll.java
+#	new file:   src/uts/wsd/soap/client/Team23Soap.java
+#	new file:   src/uts/wsd/soap/client/Team23SoapClient.java
+#	new file:   src/uts/wsd/soap/client/Team23SoapPortBindingStub.java
+#	new file:   src/uts/wsd/soap/client/Team23SoapProxy.java
+#	new file:   src/uts/wsd/soap/client/Team23SoapService.java
+#	new file:   src/uts/wsd/soap/client/Team23SoapServiceLocator.java
+#
+# Untracked files:
+#	WebContent/pollSubmit_BACKUP_6852.jsp
+#	WebContent/pollSubmit_BACKUP_8264.jsp
+#	WebContent/pollSubmit_BASE_6852.jsp
+#	WebContent/pollSubmit_BASE_8264.jsp
+#	WebContent/pollSubmit_LOCAL_6852.jsp
+#	WebContent/pollSubmit_LOCAL_8264.jsp
+#	WebContent/pollSubmit_REMOTE_6852.jsp
+#	WebContent/pollSubmit_REMOTE_8264.jsp
+#
+

@@ -10,7 +10,6 @@
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
 <% 
-	//StoredCreators allCreators = pollApp.getCreators();
 	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
 	DateFormat dateformatDateTime = new SimpleDateFormat("EEE, d MMM yyyy 'at' hh:mm aaa");
 	DateFormat dateformatform = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
@@ -26,14 +25,6 @@
 		poll = pollApp.getPoll(pollId);
 		pollCreator = pollApp.getPollCreator(pollId);
 	}
-	/*
-	if (pollId!= null) {
-		pollCreator = allCreators.getPollCreator(pollId);
-		if (pollCreator!=null) {
-			poll = pollCreator.getPoll(pollId);
-		}
-	}
-	*/
 %>
 <masterpage title="Poll Details">
 	<menu> 
@@ -83,22 +74,24 @@
 					<% 	for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
 						<possibledate><%= dateformatDateTime.format(meetingDate)%></possibledate>
 					<%	}
-						for(PollResponse pResponse : poll.getPollResponses()) {
+						if(poll.getPollResponses()!=null){
+							for(PollResponse pResponse : poll.getPollResponses()) {
 					%>
 						<response personName="<%= pResponse.getPersonName() %>">
 					<%
-							for(Date meetingDate : poll.getPossibleMeetingDates()){
-								if(pResponse.isDateInResponses(meetingDate)){
+								for(Date meetingDate : poll.getPossibleMeetingDates()){
+									if(pResponse.isDateInResponses(meetingDate)){
 					%>
 							<pollRdate going="yes"></pollRdate>
-					<%			} else { %>
+					<%				} else { %>
 							<pollRdate going="no"></pollRdate>
 					<%			
+									}
 								}
-							}
 					%>
 						</response>
-					<%  }
+					<%  	}
+						}
 						//if user is not signed or user is not the owner of this poll then user can add new responses
 						//if user is the owner user should not be able to add new responses to her own poll, just see the responses.
 						if(me==null || !pollApp.isSamePerson(me, pollCreator)) {	%>

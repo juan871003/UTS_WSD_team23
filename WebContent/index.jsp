@@ -2,20 +2,19 @@
 	pageEncoding="UTF-8"%><?xml version="1.0" encoding="UTF-8"?>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="team23.models.*"%>
 <?xml-stylesheet type="text/xsl" href="pollsApp.xsl"?>
 <% String filePath = application.getRealPath("WEB-INF/stored_polls.xml"); %>
 <jsp:useBean id="pollApp" class="team23.models.PollApplication">
 	<jsp:setProperty name="pollApp" property="filePath" value="<%= filePath %>"></jsp:setProperty>
 </jsp:useBean>
-<% 
-	//StoredCreators allCreators = pollApp.getCreators();
-	DateFormat dateformat = new SimpleDateFormat("yyyy.MM.dd");
-	
+<% 	
 	Creator me = null;
 	String myUsername = (String)session.getAttribute("signed_creator_username");
+	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
 	if(myUsername!=null && myUsername.length() > 0){
-		me = pollApp.getCreator(myUsername);//allCreators.getCreator(myUsername);	
+		me = pollApp.getCreator(myUsername);
 	}
 	String filter = request.getParameter("filter");
 %>
@@ -52,7 +51,7 @@
 				for(Poll poll : me.getPolls()) { %>
 				<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
 					<cardtoken label="Title: "><%= poll.getTitle() %></cardtoken>
-					<cardtoken label=" On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
+					<cardtoken label=" On: "><%= dateformatDate.format(poll.getCreationDate()) %></cardtoken>
 					<cardtoken label=" Status: "><%= poll.getStatus() %></cardtoken>
 				</carditem>
 			<% } %>
@@ -69,7 +68,7 @@
 					%>
 					<carditem link="pollDetails.jsp?id=<%= poll.getPollID().toString() %>">
 						<cardtoken label=" Title: "><%= poll.getTitle() %></cardtoken>
-						<cardtoken label=" Created On: "><%= dateformat.format(poll.getCreationDate()) %></cardtoken>
+						<cardtoken label=" Created On: "><%= dateformatDate.format(poll.getCreationDate()) %></cardtoken>
 					</carditem>
 				<%     		} 
 						} 
