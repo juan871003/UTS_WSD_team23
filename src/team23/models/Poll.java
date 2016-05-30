@@ -83,9 +83,7 @@ public class Poll implements Serializable {
 		this.meetingLocation = meetingLocation;
 		this.status = "open";
 		this.possibleMeetingDates = possibleMeetingDates;
-<<<<<<< HEAD
 		this.pollResponses = new ArrayList<PollResponse>();
-=======
 		if(pollResponses!=null){
 			this.pollResponses = pollResponses;
 		}
@@ -96,7 +94,6 @@ public class Poll implements Serializable {
 		else{
 			throw new IllegalArgumentException("at least one possibleMeetingDate must be added to the new poll");
 		}
->>>>>>> refs/remotes/origin/Juan
 	}
 
 	public UUID getPollID() {

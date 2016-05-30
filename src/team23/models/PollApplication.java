@@ -56,7 +56,6 @@ public class PollApplication {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
 	
 	public void marshall(String filePath) throws JAXBException, FileNotFoundException{
 		JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
@@ -65,14 +64,11 @@ public class PollApplication {
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		m.marshal(creators, new FileOutputStream(filePath));
 	}
-	
-=======
 
 	/*
 	 * @return creators an object of type StoredCreators this object contains
 	 * all the creators, their polls, and their responses
 	 */
->>>>>>> refs/remotes/origin/Juan
 	public StoredCreators getCreators() {
 		return creators;
 	}
