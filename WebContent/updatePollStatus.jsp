@@ -15,8 +15,13 @@
 <%
 	String status = request.getParameter("select_status");
 	String pollId = request.getParameter("input_poll_id");
-	if(status!=null && (status.equals("open") || status.equals("close")) && pollId!=null) {
-		pollApp.setPollStatus(pollId, status);
+	String myUsername = (String)session.getAttribute("signed_creator_username");
+	Creator me = null;
+	if(myUsername!=null && myUsername.length()>0){
+		me = pollApp.getCreator(myUsername);	
+	}
+	if(me!=null && status!=null && (status.equals("open") || status.equals("close")) && pollId!=null) {
+		pollApp.setPollStatus(me, pollId, status);
 		pollApp.save();
 	}
 	response.sendRedirect("pollDetails.jsp?id="+pollId);
