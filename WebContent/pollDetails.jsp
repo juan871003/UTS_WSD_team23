@@ -74,22 +74,24 @@
 					<% 	for(Date meetingDate : poll.getPossibleMeetingDates()){ %>
 						<possibledate><%= dateformatDateTime.format(meetingDate)%></possibledate>
 					<%	}
-						for(PollResponse pResponse : poll.getPollResponses()) {
+						if(poll.getPollResponses()!=null){
+							for(PollResponse pResponse : poll.getPollResponses()) {
 					%>
 						<response personName="<%= pResponse.getPersonName() %>">
 					<%
-							for(Date meetingDate : poll.getPossibleMeetingDates()){
-								if(pResponse.isDateInResponses(meetingDate)){
+								for(Date meetingDate : poll.getPossibleMeetingDates()){
+									if(pResponse.isDateInResponses(meetingDate)){
 					%>
 							<pollRdate going="yes"></pollRdate>
-					<%			} else { %>
+					<%				} else { %>
 							<pollRdate going="no"></pollRdate>
 					<%			
+									}
 								}
-							}
 					%>
 						</response>
-					<%  }
+					<%  	}
+						}
 						//if user is not signed or user is not the owner of this poll then user can add new responses
 						//if user is the owner user should not be able to add new responses to her own poll, just see the responses.
 						if(me==null || !pollApp.isSamePerson(me, pollCreator)) {	%>

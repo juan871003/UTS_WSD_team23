@@ -50,7 +50,8 @@ public class Poll implements Serializable {
 	public Poll(UUID pollID, String title, Date creationDate, String meetingLocation, String description, String status,
 			ArrayList<Date> possibleMeetingDates, ArrayList<PollResponse> pollResponses)
 			throws IllegalArgumentException {
-		if (pollID != null && pollID.toString().length() > 0) {
+		if (pollID != null && pollID.toString().trim().length() > 0 
+				&& possibleMeetingDates!=null && possibleMeetingDates.size()>0) {
 			this.pollID = pollID;
 			this.title = title;
 			this.creationDate = creationDate;
@@ -58,26 +59,39 @@ public class Poll implements Serializable {
 			this.description = description;
 			this.status = status;
 			this.possibleMeetingDates = possibleMeetingDates;
-			this.pollResponses = pollResponses;
+			if(pollResponses!=null)
+				this.pollResponses = pollResponses;
+			else
+				this.pollResponses = new ArrayList<PollResponse>();
 		}
 		else 
-			throw new IllegalArgumentException("Poll, Constructor: pollID cannot be null or empty");
+			throw new IllegalArgumentException("Poll, Constructor: pollID cannot be null or empty and at least one possibleMeeting date should be added");
 	}
 
 	/*
 	 * comstructor without ID, id is generated inside constructor
 	 */
-	public Poll(String title, String meetingLocation, String description, ArrayList<Date> possibleMeetingDates) {
+	public Poll(String title, String meetingLocation, String description, ArrayList<Date> possibleMeetingDates) throws IllegalArgumentException {
 		DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 		Date date = new Date();
 		dateFormat.format(date);
+		if(possibleMeetingDates!=null&&possibleMeetingDates.size()>0){
 		this.pollID = UUID.randomUUID();
 		this.title = title;
 		this.creationDate = date;
 		this.meetingLocation = meetingLocation;
 		this.status = "open";
 		this.possibleMeetingDates = possibleMeetingDates;
-		this.pollResponses = null;
+		if(pollResponses!=null){
+			this.pollResponses = pollResponses;
+		}
+		else{
+			this.pollResponses = new ArrayList<PollResponse>();
+		}
+		}
+		else{
+			throw new IllegalArgumentException("at least one possibleMeetingDate must be added to the new poll");
+		}
 	}
 
 	public UUID getPollID() {

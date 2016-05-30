@@ -50,5 +50,17 @@ public class Team23SoapProxy implements uts.wsd.soap.client.Team23Soap {
     return team23Soap.getPolls(arg0, arg1, arg2, arg3, arg4);
   }
   
+  public java.lang.String createPoll(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4, java.util.Calendar[] arg5) throws java.rmi.RemoteException{
+    if (team23Soap == null)
+      _initTeam23SoapProxy();
+    return team23Soap.createPoll(arg0, arg1, arg2, arg3, arg4, arg5);
+  }
+  
+  public void closePoll(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2) throws java.rmi.RemoteException{
+    if (team23Soap == null)
+      _initTeam23SoapProxy();
+    team23Soap.closePoll(arg0, arg1, arg2);
+  }
+  
   
 }

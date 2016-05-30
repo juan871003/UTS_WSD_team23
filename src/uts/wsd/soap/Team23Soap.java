@@ -4,6 +4,7 @@ import javax.jws.WebService;
 import javax.servlet.ServletContext;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
@@ -43,15 +44,29 @@ public class Team23Soap {
 	}
 
 	@WebMethod
-	public ArrayList<Poll> getPolls(
-			String username, 
-			String password, 
-			String creatorUsername, 
-			String status,
+	public ArrayList<Poll> getPolls(String username, String password, String creatorUsername, String status,
 			int minResponses) {
 		PollApplication pollApp = getPollAplication();
 		Creator signedCreator = pollApp.signCreator(username, password);
 		Creator requestedCreator = pollApp.getCreator(creatorUsername);
 		return pollApp.getPolls(signedCreator, requestedCreator, status, minResponses);
+	}
+
+	@WebMethod
+	public String createPoll(String creatorUsername, String creatorPassword, String title, String meetingLocation,
+			String description, ArrayList<Date> dates) {
+		PollApplication pollApp = getPollAplication();
+		Creator signedCreator = pollApp.signCreator(creatorUsername, creatorPassword);
+		return pollApp.createPoll(signedCreator, title, meetingLocation, description, dates);
+	}
+
+	@WebMethod
+	public void closePoll(String username, String password, String pollId) {
+		if (username != null && username.trim().length() > 0 && password != null && password.trim().length() > 0
+				&& pollId != null && pollId.trim().length() > 0) {
+			PollApplication pollApp = getPollAplication();
+			Creator signedCreator = pollApp.signCreator(username, password);
+			pollApp.setPollStatus(signedCreator, pollId, "close");
+		}
 	}
 }

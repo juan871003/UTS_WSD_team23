@@ -209,16 +209,24 @@ public class PollApplication {
 				getPoll(pollId).setStatus(status);
 		}
 	}
+	
+	public void setPollStatus(Creator creator, String pollId, String status){
+		if(creator!=null&&pollId!=null&&pollId.trim().length()>0&&status!=null&&status.trim().length()>0){
+			Poll poll = creator.getPoll(pollId);
+			if(poll!=null&&(status.equals("open")||status.equals("close"))){
+				poll.setStatus(status);
+				save();
+			}
+		}
+	}
 
 	public ArrayList<Poll> getPolls(Creator SignedCreator, Creator pollCreator, String status, int minResponses) {
 		ArrayList<Poll> result = new ArrayList<Poll>();
 		if (pollCreator != null) {
 			result = (ArrayList<Poll>) pollCreator.getPolls().clone();
 		} else {
-			for (Creator creator : creators.getList()) {
-				result.addAll((ArrayList<Poll>) creator.getPolls().clone());
-				result.removeIf(p -> !p.getStatus().equals("open"));//remove all polls with status that are not 'open'
-			}
+			result = (ArrayList<Poll>) getAllPolls().clone();
+			result.removeIf(p -> !p.getStatus().equals("open"));//remove all polls with status that are not 'open'
 		}
 		if (status != null
 				&&status.equals("close") //closed polls (only if user has permission to view them)
@@ -230,5 +238,51 @@ public class PollApplication {
 			result.removeIf(p -> p.getPollResponses().size() < minResponses);
 		}
 		return result.size() > 0 ? result : null;
+	}
+	
+	private ArrayList<Poll> getAllPolls(){
+		ArrayList<Poll> result = new ArrayList<Poll>();
+		for (Creator creator : creators.getList()) {
+			result.addAll((ArrayList<Poll>) creator.getPolls().clone());
+		}
+		return result;
+	}
+	
+	public String createPoll(Creator creator, String title, String meetingLocation, String description, ArrayList<Date> dates){
+		if(creator!=null
+				&&title!=null
+				&&title.trim().length()>0
+				&&meetingLocation!=null
+				&&meetingLocation.trim().length()>0
+				&&dates!=null
+				&&dates.size()>0){
+			boolean validDates = true;
+			for (Date date : dates) {
+				if(date.before(new Date()))
+					validDates=false;
+			}
+			if(validDates){
+				UUID pollId;
+				do{
+					pollId = UUID.randomUUID();
+				} while(isPollIdTaken(pollId));
+				Poll poll = new Poll(pollId, title, new Date(), meetingLocation, description, "open", dates, null);
+				creator.addPoll(poll);
+				save();
+				return pollId.toString();
+			}
+		}
+		return null;
+	}
+	
+	private boolean isPollIdTaken(UUID pollId){
+		if(pollId!=null){
+			ArrayList<Poll> allPolls = getAllPolls();
+			for (Poll poll : allPolls) {
+				if(poll.getPollID().equals(pollId))
+					return true;
+			}
+		}
+		return false;
 	}
 }

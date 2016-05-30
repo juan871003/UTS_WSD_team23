@@ -2,12 +2,16 @@ package uts.wsd.soap.client;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletContext;
 import javax.xml.rpc.ServiceException;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
+import sun.util.resources.cldr.CalendarData;
 import team23.models.Creator;
 import team23.models.PollApplication;
 
@@ -66,6 +70,15 @@ public class Team23SoapClient {
 		}else{
 			System.out.println("returned null");
 		}
+		
+		System.out.println("Creating new poll for Michael - pollSoap 1");
+		Calendar dates[] = { new GregorianCalendar(2016,9,8) };
+		String returnedId = team23Soap.createPoll("Michael","asdf","pollSoap 1", "Building 11", "created via Soap", dates);
+		System.out.println("new poll ID: " + returnedId);
+		
+		System.out.println("Closing the newly created poll: pollSoap 1");
+		team23Soap.closePoll("Michael", "asdf", returnedId);
+		System.out.println("Poll closed, pollID: " + returnedId);
 	}
 
 }
