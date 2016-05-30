@@ -68,8 +68,8 @@
 			possibleTimes.add(date);
 		}
 		session.setAttribute("current_poll", null);
-		me.addPoll(new Poll(title, location, description, possibleTimes));
-		pollApp.marshall(filePath);%> 
+		(pollApp.getCreator(username)).addPoll(new Poll(title, location, description, possibleTimes));
+		pollApp.setCreators(pollApp.getCreators());%> 
 		
 	<cardsection>
 		<getoutsection message="Poll Added!"/>
