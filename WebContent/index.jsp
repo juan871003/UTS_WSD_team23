@@ -60,7 +60,7 @@
 		<% if (filter==null || (filter!=null && !filter.equals("creator_only"))) { %>
 			<% for(Creator creator : pollApp.getCreatorsList()/*allCreators.getList()*/) { 
 					//only lists polls that are not mine (polls not created by 'me'-> signed user)
-					if(me==null || (!pollApp.isSamePerson(me, creator))) { %>
+					if((me==null || (!pollApp.isSamePerson(me, creator))) && creator.getPolls().size()>0) { %>
 				<card type="list" class="small-list-card" title="Polls created by <%= creator.getUsername() %>">
 					<% 	for(Poll poll : creator.getPolls()) { 
 						//only show 'open' polls
