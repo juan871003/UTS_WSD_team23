@@ -13,7 +13,7 @@
 	Creator me = null;
 	String myUsername = (String)session.getAttribute("signed_creator_username");
 	DateFormat dateformatDate = new SimpleDateFormat("yyyy.MM.dd");
-	if(myUsername!=null && myUsername.length() > 0){
+	if(myUsername!=null && myUsername.trim().length() > 0){
 		me = pollApp.getCreator(myUsername);
 	}
 	String filter = request.getParameter("filter");

@@ -56,10 +56,10 @@ public class PollApplication {
 			e.printStackTrace();
 		}
 	}
-	
-	public void marshall(String filePath) throws JAXBException, FileNotFoundException{
+
+	public void marshall(String filePath) throws JAXBException, FileNotFoundException {
 		JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
-		
+
 		Marshaller m = jc.createMarshaller();
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		m.marshal(creators, new FileOutputStream(filePath));
@@ -100,7 +100,7 @@ public class PollApplication {
 	 * the XML file is stored.
 	 */
 	public void save() {
-		if (this.creators != null && filePath.length() > 0)
+		if (this.creators != null && filePath.trim().length() > 0)
 			setCreators(this.creators);
 	}
 
@@ -113,7 +113,7 @@ public class PollApplication {
 	 * @param pollResponse PollResponse to be added to poll
 	 */
 	public void addResponse(String pollId, PollResponse pollResponse) {
-		if (pollId != null && pollId.length() > 0 && pollResponse != null) {
+		if (pollId != null && pollId.trim().length() > 0 && pollResponse != null) {
 			Creator theCreator = creators.getPollCreator(pollId);
 			if (theCreator != null) {
 				Poll thePoll = theCreator.getPoll(pollId);
@@ -132,7 +132,7 @@ public class PollApplication {
 	 * @return Creator creator with given username, null if not found
 	 */
 	public Creator getCreator(String username) {
-		if (username != null && username.length() > 0)
+		if (username != null && username.trim().length() > 0)
 			return creators.getCreator(username);
 		return null;
 	}
@@ -148,7 +148,7 @@ public class PollApplication {
 	 * null otherwise
 	 */
 	public Creator signCreator(String username, String password) {
-		if (username != null && username.length() > 0 && password != null && password.length() > 0)
+		if (username != null && username.trim().length() > 0 && password != null && password.trim().length() > 0)
 			return creators.getCreator(username, password);
 		return null;
 	}
@@ -170,7 +170,7 @@ public class PollApplication {
 	 * @return Poll poll with given ID, null if not found
 	 */
 	public Poll getPoll(String pollId) {
-		if (pollId != null && pollId.length() > 0) {
+		if (pollId != null && pollId.trim().length() > 0) {
 			Creator theCreator = creators.getPollCreator(pollId);
 			if (theCreator != null) {
 				return theCreator.getPoll(pollId);
@@ -188,7 +188,7 @@ public class PollApplication {
 	 * @return Creator the person that created the poll
 	 */
 	public Creator getPollCreator(String pollId) {
-		if (pollId != null && pollId.length() > 0)
+		if (pollId != null && pollId.trim().length() > 0)
 			return creators.getPollCreator(pollId);
 		return null;
 	}
@@ -213,69 +213,111 @@ public class PollApplication {
 	 * @param status 'open' or 'close' new status for the poll
 	 */
 	public void setPollStatus(String pollId, String status) {
-		if (pollId != null && pollId.length() > 0 && (status.equals("open") || status.equals("close"))) {
+		if (pollId != null && pollId.trim().length() > 0 && (status.equals("open") || status.equals("close"))) {
 			Poll thePoll = getPoll(pollId);
 			if (thePoll != null)
 				getPoll(pollId).setStatus(status);
 		}
 	}
-	
-	public void setPollStatus(Creator creator, String pollId, String status){
-		if(creator!=null&&pollId!=null&&pollId.trim().length()>0&&status!=null&&status.trim().length()>0){
+
+	/*
+	 * sets the status of a poll, only if creator owns the poll, and status is
+	 * 'open' or 'close'
+	 * 
+	 * @param creator creator of the poll
+	 * 
+	 * @param pollId id of the poll to be updated
+	 * 
+	 * @param status new status to be updated, either 'open' or 'close'
+	 */
+	public void setPollStatus(Creator creator, String pollId, String status) {
+		if (creator != null && pollId != null && pollId.trim().length() > 0 && status != null
+				&& status.trim().length() > 0) {
 			Poll poll = creator.getPoll(pollId);
-			if(poll!=null&&(status.equals("open")||status.equals("close"))){
+			if (poll != null && (status.equals("open") || status.equals("close"))) {
 				poll.setStatus(status);
 				save();
 			}
 		}
 	}
 
-	public ArrayList<Poll> getPolls(Creator SignedCreator, Creator pollCreator, String status, int minResponses) {
+	/*
+	 * gets all the polls filtered by the parameters.
+	 * 
+	 * @signedCreator the creator that is signed, only needed if trying to get
+	 * 'close' polls
+	 * 
+	 * @pollCreator to filter the list by poll creator
+	 * 
+	 * @status to filter the list by status (if filtering by 'close' status then
+	 * credentials are needed
+	 * 
+	 * @minResponses to filter the list by minimum number of responses.
+	 * 
+	 * @return ArrayList<Poll> list of polls filtered by the given criteria
+	 */
+	public ArrayList<Poll> getPolls(Creator signedCreator, Creator pollCreator, String status, int minResponses) {
 		ArrayList<Poll> result = new ArrayList<Poll>();
 		if (pollCreator != null) {
 			result = (ArrayList<Poll>) pollCreator.getPolls().clone();
 		} else {
 			result = (ArrayList<Poll>) getAllPolls().clone();
-			result.removeIf(p -> !p.getStatus().equals("open"));//remove all polls with status that are not 'open'
+			result.removeIf(p -> !p.getStatus().equals("open"));
 		}
-		if (status != null
-				&&status.equals("close") //closed polls (only if user has permission to view them)
-				&& SignedCreator!=null
-				&& SignedCreator.getUsername().equals(pollCreator.getUsername())){
-			result.removeIf(p -> !p.getStatus().equals("close"));//remove all polls with status that are not 'close'
+		if (status != null && status.equals("close") && signedCreator != null
+				&& signedCreator.getUsername().equals(pollCreator.getUsername())) {
+			result.removeIf(p -> !p.getStatus().equals("close"));
 		}
 		if (minResponses > 0) {
 			result.removeIf(p -> p.getPollResponses().size() < minResponses);
 		}
 		return result.size() > 0 ? result : null;
 	}
-	
-	private ArrayList<Poll> getAllPolls(){
+
+	/*
+	 * get all open and close polls, for internal use only
+	 * 
+	 * @return ArrayList<Poll> all polls, open and close.
+	 */
+	private ArrayList<Poll> getAllPolls() {
 		ArrayList<Poll> result = new ArrayList<Poll>();
 		for (Creator creator : creators.getList()) {
 			result.addAll((ArrayList<Poll>) creator.getPolls().clone());
 		}
 		return result;
 	}
-	
-	public String createPoll(Creator creator, String title, String meetingLocation, String description, ArrayList<Date> dates){
-		if(creator!=null
-				&&title!=null
-				&&title.trim().length()>0
-				&&meetingLocation!=null
-				&&meetingLocation.trim().length()>0
-				&&dates!=null
-				&&dates.size()>0){
+
+	/*
+	 * creates a new poll, only if the given data is valid.
+	 * 
+	 * @param creator the creator of the poll
+	 * 
+	 * @param title title of the poll, cannot be empty
+	 * 
+	 * @param meetingLocation location of meeting, cannot by empty
+	 * 
+	 * @param description poll description
+	 * 
+	 * @param dates ArrayList<Date> dates for poll users to choose from, cannot
+	 * by empty
+	 * 
+	 * @return String id of the newly created poll, null if poll was not
+	 * created.
+	 */
+	public String createPoll(Creator creator, String title, String meetingLocation, String description,
+			ArrayList<Date> dates) {
+		if (creator != null && title != null && title.trim().length() > 0 && meetingLocation != null
+				&& meetingLocation.trim().length() > 0 && dates != null && dates.size() > 0) {
 			boolean validDates = true;
 			for (Date date : dates) {
-				if(date.before(new Date()))
-					validDates=false;
+				if (date.before(new Date()))
+					validDates = false;
 			}
-			if(validDates){
+			if (validDates) {
 				UUID pollId;
-				do{
+				do {
 					pollId = UUID.randomUUID();
-				} while(isPollIdTaken(pollId));
+				} while (isPollIdTaken(pollId));
 				Poll poll = new Poll(pollId, title, new Date(), meetingLocation, description, "open", dates, null);
 				creator.addPoll(poll);
 				save();
@@ -284,46 +326,48 @@ public class PollApplication {
 		}
 		return null;
 	}
-	
-	private boolean isPollIdTaken(UUID pollId){
-		if(pollId!=null){
+
+	/*
+	 * for private is only, checks if the given pollId is already taken
+	 * 
+	 * @param pollId the new Id t check against all existing poll ids.
+	 * 
+	 * @return true if a poll already has the given id.
+	 */
+	private boolean isPollIdTaken(UUID pollId) {
+		if (pollId != null) {
 			ArrayList<Poll> allPolls = getAllPolls();
 			for (Poll poll : allPolls) {
-				if(poll.getPollID().equals(pollId))
+				if (poll.getPollID().equals(pollId))
 					return true;
 			}
 		}
 		return false;
 	}
-	
-	public void addCreator(Creator creator)
-	{
-		creators.addCreator(creator);
+
+	/*
+	 * adds a creator to the list of creators, only if creator is valid.
+	 * does NOT save the changes.
+	 * @param	creator	new creator to be added, creator's username must be unique
+	 */
+	public void addCreator(Creator creator) {
+		if (creator != null && !checkUnique(creator.getUsername()))
+			creators.addCreator(creator);
 	}
-	
-	//update the XML when a new creator is added
-	public void updateCreators()
-	{
-		try {
-			FileOutputStream fout = new FileOutputStream(filePath);
-			JAXBContext jc = JAXBContext.newInstance(StoredCreators.class);
-			Marshaller m = jc.createMarshaller();
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			m.marshal(creators, fout);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
-	
-	//Checked the creators list and returns false if the username is unique
-	public boolean checkUnique(String username)
-	{
+
+	/*
+	 * Checks the creators list and returns false if the username is unique
+	 * 
+	 * @param username username of new creator
+	 * 
+	 * @return true if there is no creators with the given username
+	 */
+	public boolean checkUnique(String username) {
 		Creator test = getCreator(username);
-		if (test==null)
-		return false;
-		
+		if (test == null)
+			return false;
+
 		return true;
 	}
-	
+
 }

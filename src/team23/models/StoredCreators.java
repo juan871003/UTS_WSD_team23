@@ -80,7 +80,7 @@ public class StoredCreators implements Serializable {
 	 * and password, null if not found.
 	 */
 	public Creator getCreator(String username, String password) {
-		if (username != null && username.length() > 0 && password != null && password.length() > 0) {
+		if (username != null && username.trim().length() > 0 && password != null && password.trim().length() > 0) {
 			for (Creator creator : list) {
 				if (creator.getUsername().equals(username) && creator.getPassword().equals(password)) {
 					return creator;
@@ -99,7 +99,7 @@ public class StoredCreators implements Serializable {
 	 * found.
 	 */
 	public Creator getCreator(String username) {
-		if (username != null && username.length() > 0) {
+		if (username != null && username.trim().length() > 0) {
 			for (Creator creator : list) {
 				if (creator.getUsername().equals(username)) {
 					return creator;
@@ -117,7 +117,7 @@ public class StoredCreators implements Serializable {
 	 * @return creator who created the poll with the given id, null if not found
 	 */
 	public Creator getPollCreator(String pollId) {
-		if (pollId != null && pollId.length() > 0) {
+		if (pollId != null && pollId.trim().length() > 0) {
 			for (Creator creator : list) {
 				for (Poll poll : creator.getPolls()) {
 					if (poll.getPollID().toString().equals(pollId)) {

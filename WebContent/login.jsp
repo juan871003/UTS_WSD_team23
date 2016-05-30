@@ -11,7 +11,7 @@
 <% 
 	String myUsername = (String)session.getAttribute("signed_creator_username");
 	Creator me = null;
-	if(myUsername!=null && myUsername.length()>0){
+	if(myUsername!=null && myUsername.trim().length()>0){
 		me = pollApp.getCreator(myUsername);
 	}
 %>

@@ -17,7 +17,7 @@
  	String name = request.getParameter("input_name");
  	String pollId = request.getParameter("input_poll_id");
  	String[] responses = request.getParameterValues("checkbox_response");
- 	if (name != null && pollId != null) {
+ 	if (name != null && pollId != null && name.trim().length()>0 && pollId.trim().length()>0) {
  		if (responses==null){
  			responses = new String[0];
  		}

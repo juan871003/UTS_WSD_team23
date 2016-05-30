@@ -26,14 +26,17 @@
 	<%} else{  //Checks if everything is ok, creates a new Creator, adds it to the list, saves it to the xml, signs the creator in and redirects to the index page
 			String username = request.getParameter("input_username");
 			String password = request.getParameter("input_password1");
-			Creator me = new Creator(username, password);
-			pollApp.addCreator(me);
-			me = pollApp.signCreator(username, password);
+			Creator newCreator = null, me = null;
+			if(username.trim().length()>0 && password.trim().length()>0){
+				newCreator = new Creator(username, password);
+				pollApp.addCreator(newCreator);
+				me = pollApp.signCreator(username, password);
+				pollApp.save();
+			}
 			
 			if (me != null) {
 				session.setAttribute("signed_creator_username", me.getUsername());	
 				response.sendRedirect("index.jsp");
-				pollApp.updateCreators();
 			}	
 	}%>
 	

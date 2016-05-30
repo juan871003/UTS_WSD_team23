@@ -304,12 +304,12 @@
 					<div class="form-group signin-input-container">
 						<input type="text" class="form-control" name="{@usernameinput}"
 							id="{@usernameinput}" placeholder="Username" required="true"
-							maxlength="20" />
+							minlength="3" maxlength="15" />
 					</div>
 					<div class="form-group signin-input-container">
 						<input type="password" class="form-control" name="{@passwordinput}"
 							id="{@passwordinput}" placeholder="Password" required="true"
-							maxlength="20" />
+							minlength="3" maxlength="15" />
 					</div>
 					<div class="form-group signin-input-container">
 						<button type="submit" class="btn btn-success btn-block">Login</button>
@@ -334,17 +334,17 @@
 					<div class="form-group signin-input-container">
 						<input type="text" class="form-control" name="{@usernameinput}"
 							id="{@usernameinput}" placeholder="Username" required="true"
-							maxlength="20" />
+							minlength="3" maxlength="15" />
 					</div>
 					<div class="form-group signin-input-container">
 						<input type="password" class="form-control" name="{@password1input}"
 							id="{@password1input}" placeholder="Password" required="true"
-							maxlength="20" />
+							minlength="3" maxlength="15" />
 					</div>
 					<div class="form-group signin-input-container">
 						<input type="password" class="form-control" name="{@password2input}"
 							id="{@password2input}" placeholder="Confirm Password" required="true"
-							maxlength="20" />
+							minlength="3" maxlength="15" />
 					</div>
 					<div class="form-group signin-input-container">
 						<button type="submit" class="btn btn-success btn-block">Register</button>
@@ -360,13 +360,13 @@
 			<div class="card login-card container">
 					<form action="{@formaction}" method="POST">
 						<div>
-							<input type="text" class="form-control" name="{@titleinput}" id="{@titleinput}" placeholder="Poll title" required="true" maxlength="30"/>
+							<input type="text" class="form-control" name="{@titleinput}" id="{@titleinput}" placeholder="Poll title" required="true" maxlength="20"/>
 						</div>
 						<div>
 							<input type="text" class="form-control" name="{@locationinput}" id="{@locationinput}" placeholder="Meeting location" required="true" maxlength="40"/>
 						</div>
 						<div>
-							<input type="text" class="form-control" name="{@descriptioninput}" id="{@descriptioninput}" placeholder="Description" required="true" maxlength="50"/>
+							<input type="text" class="form-control" name="{@descriptioninput}" id="{@descriptioninput}" placeholder="Description" required="true" maxlength="100"/>
 						</div>
 						
 						<input type="submit" name="action" class="btn btn-success btn-block" value="CREATE"/>

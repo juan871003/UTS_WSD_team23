@@ -38,7 +38,7 @@ public class Creator implements Serializable {
 	 * @param password creator's password, cannot be empty
 	 */
 	public Creator(String username, String password) throws IllegalArgumentException {
-		if (username != null && username.length() > 0 && password != null && password.length() > 0) {
+		if (username != null && username.trim().length() > 0 && password != null && password.trim().length() > 0) {
 			this.username = username;
 			this.password = password;
 		} else {
@@ -58,7 +58,7 @@ public class Creator implements Serializable {
 	 * setting
 	 */
 	public void setUsername(String username) throws IllegalArgumentException {
-		if (username != null && username.length() > 0)
+		if (username != null && username.trim().length() > 0)
 			this.username = username;
 		else
 			throw new IllegalArgumentException("Creator, setUsername: username cannot be empty");
@@ -75,7 +75,7 @@ public class Creator implements Serializable {
 	 * @password creator's password, cannot be empty
 	 */
 	public void setPassword(String password) {
-		if (password != null && password.length() > 0)
+		if (password != null && password.trim().length() > 0)
 			this.password = password;
 	}
 
@@ -109,7 +109,7 @@ public class Creator implements Serializable {
 	 * @return Poll with given id, if not found returns null
 	 */
 	public Poll getPoll(String pollId) {
-		if (pollId != null && pollId.length() > 0) {
+		if (pollId != null && pollId.trim().length() > 0) {
 			for (Poll poll : polls) {
 				if (poll.getPollID().toString().equals(pollId)) {
 					return poll;

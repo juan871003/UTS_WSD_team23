@@ -39,7 +39,7 @@ public class PollResponse implements Serializable {
 	 * person chose as available
 	 */
 	public PollResponse(String personName, ArrayList<Date> responses) throws IllegalArgumentException {
-		if (personName != null && personName.length() > 0 && responses != null) {
+		if (personName != null && personName.trim().length() > 0 && responses != null) {
 			this.personName = personName;
 			this.responses = responses;
 		} else {
@@ -55,7 +55,7 @@ public class PollResponse implements Serializable {
 	 * @param personName name of person who responded, should not be empty
 	 */
 	public void setPersonName(String personName) {
-		if (personName != null && personName.length() > 0)
+		if (personName != null && personName.trim().length() > 0)
 			this.personName = personName;
 	}
 

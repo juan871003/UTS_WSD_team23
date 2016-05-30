@@ -15,7 +15,7 @@
 	DateFormat dateformatform = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
 	String myUsername = (String)session.getAttribute("signed_creator_username");
 	Creator me = null;
-	if(myUsername!=null && myUsername.length()>0){
+	if(myUsername!=null && myUsername.trim().length()>0){
 		me = pollApp.getCreator(myUsername);	
 	}
 	String pollId = request.getParameter("id");
@@ -45,7 +45,7 @@
 			<buttonssection>
 			<% if (me==null) { %>
 				<buttonlink link="login.jsp" type="primary">Login</buttonlink>
-				<buttonlink link="signup.jsp" type="success">Sign Up</buttonlink>
+				<buttonlink link="register.jsp" type="success">Sign Up</buttonlink>
 			<% } else { %>
 				<buttonlink link="logout.jsp" type="danger">Logout</buttonlink>	
 			<% } %>
